@@ -29,4 +29,10 @@ public class CompetenciaResource {
         return new ResponseEntity<>(competenciaService.atualizar(competenciaDTO), HttpStatus.OK);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> excluir(@PathVariable Integer id) {
+        competenciaService.excluir(id);
+        return new ResponseEntity<>(null, HttpStatus.OK);
+    }
+
 }

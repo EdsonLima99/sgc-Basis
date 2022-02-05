@@ -37,4 +37,12 @@ public class CompetenciaService {
 
         return competenciaMapper.paraDTO(competencia);
     }
+
+    public void excluir(Integer id) {
+        try {
+            competenciaRepository.deleteById(id);
+        } catch (Exception e) {
+            throw new RegraNegocioException("Não foi possível deletar a competência!");
+        }
+    }
 }
