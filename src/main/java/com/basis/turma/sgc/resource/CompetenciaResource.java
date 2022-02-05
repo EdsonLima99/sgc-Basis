@@ -24,4 +24,9 @@ public class CompetenciaResource {
         return new ResponseEntity<>(competenciaService.inserir(competenciaDTO), HttpStatus.CREATED);
     }
 
+    @PutMapping
+    public ResponseEntity<CompetenciaDTO> atualizar(@RequestBody CompetenciaDTO competenciaDTO) {
+        return new ResponseEntity<>(competenciaService.atualizar(competenciaDTO), HttpStatus.OK);
+    }
+
 }

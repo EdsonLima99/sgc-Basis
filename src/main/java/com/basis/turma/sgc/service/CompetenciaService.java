@@ -30,4 +30,11 @@ public class CompetenciaService {
 
         return competenciaMapper.paraDTO(competencia);
     }
+
+    public CompetenciaDTO atualizar(CompetenciaDTO competenciaDTO) {
+        Competencia competencia = competenciaMapper.paraEntidade(competenciaDTO);
+        competencia = competenciaRepository.save(competencia);
+
+        return competenciaMapper.paraDTO(competencia);
+    }
 }
