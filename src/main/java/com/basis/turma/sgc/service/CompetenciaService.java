@@ -2,9 +2,11 @@ package com.basis.turma.sgc.service;
 
 import com.basis.turma.sgc.domain.Competencia;
 import com.basis.turma.sgc.repository.CompetenciaRepository;
-import com.basis.turma.sgc.service.dto.CompetenciaDTO;
+import com.basis.turma.sgc.service.dto.competencia.CompetenciaDTO;
+import com.basis.turma.sgc.service.dto.competencia.CompetenciaListaDTO;
 import com.basis.turma.sgc.service.exception.RegraNegocioException;
-import com.basis.turma.sgc.service.mapper.CompetenciaMapper;
+import com.basis.turma.sgc.service.mapper.competencia.CompetenciaListaMapper;
+import com.basis.turma.sgc.service.mapper.competencia.CompetenciaMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,12 +18,13 @@ public class CompetenciaService {
 
     private final CompetenciaRepository competenciaRepository;
     private final CompetenciaMapper competenciaMapper;
+    private final CompetenciaListaMapper competenciaListaMapper;
 
-    public CompetenciaDTO buscar(Integer id) {
+    public CompetenciaListaDTO buscar(Integer id) {
         Competencia competencia = competenciaRepository.findById(id)
                 .orElseThrow(() -> new RegraNegocioException("Competência não encontrada!"));
 
-        return competenciaMapper.paraDTO(competencia);
+        return competenciaListaMapper.paraDTO(competencia);
     }
 
     public CompetenciaDTO inserir(CompetenciaDTO competenciaDTO) {

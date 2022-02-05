@@ -1,4 +1,4 @@
-package com.basis.turma.sgc.service.dto;
+package com.basis.turma.sgc.service.dto.competencia;
 
 import lombok.Getter;
 import lombok.Setter;
