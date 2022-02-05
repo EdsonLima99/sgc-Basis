@@ -20,9 +20,9 @@ spring:
       hibernate.cache.use_second_level_cache: false
       hibernate.cache.use_query_cache: false
       hibernate.generate_statistics: false
-  #liquibase:
-    #change-log: classpath:/config/liquibase/master.xml
-    #drop-first: true
+  liquibase:
+    change-log: classpath:/config/liquibase/master.xml
+    drop-first: true
   server:
     port: 8080
     error:
