@@ -5,17 +5,19 @@ import com.basis.turma.sgc.service.dto.CompetenciaDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/competencia")
+@RequestMapping("/api/competencias")
 @RequiredArgsConstructor
 public class CompetenciaResource {
 
     private final CompetenciaService competenciaService;
+
+    @GetMapping("/{id}")
+    public ResponseEntity<CompetenciaDTO> buscar(@PathVariable Integer id) {
+        return new ResponseEntity<>(competenciaService.buscar(id), HttpStatus.OK);
+    }
 
     @PostMapping
     public ResponseEntity<CompetenciaDTO> inserir(@RequestBody CompetenciaDTO competenciaDTO) {
