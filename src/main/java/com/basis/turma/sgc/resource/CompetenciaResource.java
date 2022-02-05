@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/competencias")
 @RequiredArgsConstructor
@@ -18,6 +20,11 @@ public class CompetenciaResource {
     @GetMapping("/{id}")
     public ResponseEntity<CompetenciaListaDTO> buscar(@PathVariable Integer id) {
         return new ResponseEntity<>(competenciaService.buscar(id), HttpStatus.OK);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<CompetenciaListaDTO>> buscarTodas() {
+        return new ResponseEntity<>(competenciaService.buscarTodas(), HttpStatus.OK);
     }
 
     @PostMapping
