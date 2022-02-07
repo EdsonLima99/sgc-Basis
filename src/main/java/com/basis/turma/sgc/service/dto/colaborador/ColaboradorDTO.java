@@ -3,7 +3,7 @@ package com.basis.turma.sgc.service.dto.colaborador;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.awt.image.BufferedImage;
+import java.awt.*;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -21,7 +21,7 @@ public class ColaboradorDTO implements Serializable {
 
     private String email;
 
-    private BufferedImage foto;
+    private Image foto;
 
     private Date dt_nascimento;
 

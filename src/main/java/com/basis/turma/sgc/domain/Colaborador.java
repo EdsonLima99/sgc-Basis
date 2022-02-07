@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.awt.image.BufferedImage;
+import java.awt.*;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -33,7 +33,7 @@ public class Colaborador implements Serializable {
     private String email;
 
     @Column(name = "foto")
-    private BufferedImage foto;
+    private Image foto;
 
     @Column(name = "dt_nascimento")
     private Date dt_nascimento;
