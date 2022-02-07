@@ -8,8 +8,8 @@
     <include file="config/liquibase/changelogs/202202071404_criar_senioridade.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelogs/202202071408_criar_colaborador.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelogs/202202051019_criar_categoria.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelogs/202202051027_criar_competencia.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelogs/202202071629_colaborador_competencia_senioridade.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelogs/202202051031_inserir_categoria.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelogs/202202071421_inserir_senioridade.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelogs/202202051031_inserir_categoria.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>

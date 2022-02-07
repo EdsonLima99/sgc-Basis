@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -17,15 +18,11 @@ public class ColaboradorDTO implements Serializable {
 
     private String sobrenome;
 
-    private String cpf;
-
     private String email;
 
-    private Image foto;
+    private Date dataNascimento;
 
-    private Date dt_nascimento;
-
-    private Date dt_admissao;
+    private Date dataAdmissao;
 
     private Integer senioridadeId;
 
