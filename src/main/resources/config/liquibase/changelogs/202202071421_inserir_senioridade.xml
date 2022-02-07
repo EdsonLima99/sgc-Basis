@@ -1,0 +1,20 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet id="5" author="edson.lima">
+        <insert schemaName="public" tableName="senioridade">
+            <column name="id">1</column>
+            <column name="descricao">Estagiário</column>
+        </insert>
+        <insert schemaName="public" tableName="senioridade">
+            <column name="id">2</column>
+            <column name="descricao">Júnior</column>
+        </insert>
+        <insert schemaName="public" tableName="senioridade">
+            <column name="id">3</column>
+            <column name="descricao">Pleno</column>
+        </insert>
+        <insert schemaName="public" tableName="senioridade">
+            <column name="id">4</column>
+            <column name="descricao">Sênior</column>
+        </insert>
+    </changeSet>
+</databaseChangeLog>
