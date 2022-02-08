@@ -6,6 +6,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "colaborador", schema = "public")
@@ -35,13 +36,15 @@ public class Colaborador implements Serializable {
     private byte[] foto;
 
     @Column(name = "dt_nascimento")
-    private Date dt_nascimento;
+    private Date datanascimento;
 
     @Column(name = "dt_admissao")
-    private Date dt_admissao;
+    private Date dataadmissao;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_senioridade")
     private Senioridade senioridade;
 
+    @OneToMany(mappedBy = "colaborador")
+    private Set<ColaboradorCompetencia> senioridades;
 }

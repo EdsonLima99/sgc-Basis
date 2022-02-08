@@ -4,7 +4,7 @@ import com.basis.turma.sgc.domain.Competencia;
 import com.basis.turma.sgc.repository.CompetenciaRepository;
 import com.basis.turma.sgc.service.dto.competencia.CompetenciaDTO;
 import com.basis.turma.sgc.service.dto.competencia.CompetenciaListaDTO;
-import com.basis.turma.sgc.service.exception.RegraNegocioException;
+import com.basis.turma.sgc.service.exception.RegraNegocio.Exception;
 import com.basis.turma.sgc.service.mapper.competencia.CompetenciaListaMapper;
 import com.basis.turma.sgc.service.mapper.competencia.CompetenciaMapper;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +24,7 @@ public class CompetenciaService {
 
     public CompetenciaListaDTO buscar(Integer id) {
         Competencia competencia = competenciaRepository.findById(id)
-                .orElseThrow(() -> new RegraNegocioException("Competência não encontrada!"));
+                .orElseThrow(() -> new Exception("Competência não encontrada!"));
 
         return competenciaListaMapper.paraDTO(competencia);
     }
@@ -53,7 +53,7 @@ public class CompetenciaService {
         try {
             competenciaRepository.deleteById(id);
         } catch (Exception e) {
-            throw new RegraNegocioException("Não foi possível deletar a competência!");
+            throw new Exception("Não foi possível deletar a competência!");
         }
     }
 }

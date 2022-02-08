@@ -4,8 +4,6 @@ import com.basis.turma.sgc.service.dto.SelecionaDTO;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -21,9 +19,9 @@ public class ColaboradorListaDTO implements Serializable {
 
     private String email;
 
-    private Date dt_nascimento;
+    private Date datanascimento;
 
-    private Date dt_admissao;
+    private Date dataadmissao;
 
     private SelecionaDTO senioridade;
 

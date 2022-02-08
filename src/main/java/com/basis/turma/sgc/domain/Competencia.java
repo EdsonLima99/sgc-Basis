@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @Table(name = "competencia", schema = "public")
@@ -27,4 +28,7 @@ public class Competencia implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_categoria")
     private Categoria categoria;
+
+    @OneToMany(mappedBy = "competencia")
+    private Set<ColaboradorCompetencia> senioridades;
 }

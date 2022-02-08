@@ -1,6 +1,6 @@
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
-    <changeSet id="6" author="edson.lima">
-        <createTable tableName="colaborador_competencia_senioridade">
+    <changeSet id="5" author="edson.lima">
+        <createTable tableName="colaborador_competencia">
             <column name="id_colaborador" type="int">
                 <constraints nullable="false"/>
             </column>
@@ -12,23 +12,23 @@
             </column>
         </createTable>
 
-        <addPrimaryKey tableName="colaborador_competencia_senioridade"
+        <addPrimaryKey tableName="colaborador_competencia"
                        columnNames="id_colaborador, id_competencia"
                        constraintName="pk_colaborador_competencia"/>
 
         <addForeignKeyConstraint
-                baseTableName="colaborador_competencia_senioridade"
+                baseTableName="colaborador_competencia"
                 baseColumnNames="id_colaborador"
                 referencedTableName="colaborador"
                 referencedColumnNames="id"
-                constraintName="fk_colaborador_competencia_senioridade_colaborador"
+                constraintName="fk_colaborador_competencia_colaborador"
         />
         <addForeignKeyConstraint
-                baseTableName="colaborador_competencia_senioridade"
+                baseTableName="colaborador_competencia"
                 baseColumnNames="id_competencia"
                 referencedTableName="competencia"
                 referencedColumnNames="id"
-                constraintName="fk_colaborador_competencia_senioridade_competencia"
+                constraintName="fk_colaborador_competencia_competencia"
         />
 
     </changeSet>
