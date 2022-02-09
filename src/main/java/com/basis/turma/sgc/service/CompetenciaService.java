@@ -35,25 +35,23 @@ public class CompetenciaService {
         return competenciaListaMapper.listaParaDTOs(listaCompetencias);
     }
 
-    public CompetenciaDTO inserir(CompetenciaDTO competenciaDTO) {
+    public void inserir(CompetenciaDTO competenciaDTO) {
         Competencia competencia = competenciaMapper.paraEntidade(competenciaDTO);
-        competencia = competenciaRepository.save(competencia);
+        competenciaRepository.save(competencia);
 
-        return competenciaMapper.paraDTO(competencia);
     }
 
-    public CompetenciaDTO atualizar(CompetenciaDTO competenciaDTO) {
+    public void atualizar(CompetenciaDTO competenciaDTO) {
         Competencia competencia = competenciaMapper.paraEntidade(competenciaDTO);
-        competencia = competenciaRepository.save(competencia);
+        competenciaRepository.save(competencia);
 
-        return competenciaMapper.paraDTO(competencia);
     }
 
     public void excluir(Integer id) {
         try {
             competenciaRepository.deleteById(id);
         } catch (Exception e) {
-            throw new RegraNegocioException("Não foi possível deletar a competência!");
+            throw new RegraNegocioException("Não foi possível excluir a competência!");
         }
     }
 }
