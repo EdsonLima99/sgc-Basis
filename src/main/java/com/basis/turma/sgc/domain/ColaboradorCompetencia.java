@@ -25,6 +25,7 @@ public class ColaboradorCompetencia implements Serializable {
         @JoinColumn(name = "id_competencia")
         private Competencia competencia;
 
+        @Column(name = "senioridade")
         private Integer senioridade;
 
 }

@@ -1,9 +1,7 @@
 package com.basis.turma.sgc.service;
 
-import com.basis.turma.sgc.domain.Competencia;
 import com.basis.turma.sgc.domain.TurmaFormacao;
 import com.basis.turma.sgc.repository.TurmaFormacaoRepository;
-import com.basis.turma.sgc.service.dto.competencia.CompetenciaDTO;
 import com.basis.turma.sgc.service.dto.turma.TurmaFormacaoDTO;
 import com.basis.turma.sgc.service.dto.turma.TurmaFormacaoListaDTO;
 import com.basis.turma.sgc.service.exception.RegraNegocioException;

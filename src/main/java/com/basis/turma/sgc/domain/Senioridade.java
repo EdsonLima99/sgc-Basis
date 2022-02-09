@@ -20,6 +20,6 @@ public class Senioridade implements Serializable {
     @Column(name = "descricao")
     private String descricao;
 
-    @OneToMany(mappedBy = "senioridade")
-    private List<Colaborador> colaborador;
+//    @OneToMany(mappedBy = "senioridade")
+//    private List<Colaborador> colaborador;
 }

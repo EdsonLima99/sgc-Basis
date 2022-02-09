@@ -7,6 +7,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "turma_formacao", schema = "public")
@@ -27,35 +28,16 @@ public class TurmaFormacao implements Serializable {
     private String descricao;
 
     @Column(name = "dt_inicio")
-    private Date dt_inicio;
+    private Date dataInicio;
 
     @Column(name = "dt_termino")
-    private Date dt_termino;
+    private Date dataTermino;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_status")
     private Status status;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "turma_formacao_competencia_colaborador",
-            joinColumns = { @JoinColumn(name = "id_turma_formacao") },
-            inverseJoinColumns = { @JoinColumn(name = "id_competencia_turma_formacao") }
-    )
-    private List<Competencia> competenciasTurmaFormacao;
-
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "turma_formacao_competencia_colaborador",
-            joinColumns = { @JoinColumn(name = "id_turma_formacao") },
-            inverseJoinColumns = { @JoinColumn(name = "id_colaborador_turma_formacao") }
-    )
-    private List<Colaborador> colaboradoresTurmaFormacao;
-
-
-
-
-
-
-
-
+    @OneToMany(mappedBy = "turmaFormacao")
+    private Set<TurmaFormacaoCompetenciaColaborador> senioridades;
 
 }

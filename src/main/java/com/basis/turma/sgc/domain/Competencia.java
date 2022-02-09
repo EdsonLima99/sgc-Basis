@@ -30,5 +30,8 @@ public class Competencia implements Serializable {
     private Categoria categoria;
 
     @OneToMany(mappedBy = "competencia")
-    private Set<ColaboradorCompetencia> senioridades;
+    private Set<ColaboradorCompetencia> competencias;
+
+    @OneToMany(mappedBy = "competencia")
+    private Set<TurmaFormacaoCompetenciaColaborador> turmaCompetencias;
 }

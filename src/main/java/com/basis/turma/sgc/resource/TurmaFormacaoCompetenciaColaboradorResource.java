@@ -1,8 +1,8 @@
 package com.basis.turma.sgc.resource;
 
-import com.basis.turma.sgc.service.ColaboradorCompetenciaService;
-import com.basis.turma.sgc.service.dto.colaboradorCompetencia.ColaboradorCompetenciaDTO;
-import com.basis.turma.sgc.service.dto.colaboradorCompetencia.ColaboradorCompetenciaListaDTO;
+import com.basis.turma.sgc.service.TurmaFormacaoCompetenciaColaboradorService;
+import com.basis.turma.sgc.service.dto.turmaFormacaoCompetenciaColaborador.TurmaFormacaoCompetenciaColaboradorDTO;
+import com.basis.turma.sgc.service.dto.turmaFormacaoCompetenciaColaborador.TurmaFormacaoCompetenciaColaboradorListaDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,35 +11,35 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/colaboradorCompetencia")
+@RequestMapping("/api/turmaFormacaoCompetenciaColaborador")
 @RequiredArgsConstructor
-public class ColaboradorCompetenciaResource {
+public class TurmaFormacaoCompetenciaColaboradorResource {
 
-    private final ColaboradorCompetenciaService colaboradorCompetenciaService;
+    private final TurmaFormacaoCompetenciaColaboradorService turmaFormacaoCompetenciaColaboradorService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<ColaboradorCompetenciaListaDTO> buscar(@PathVariable Integer id) {
-        return new ResponseEntity<>(colaboradorCompetenciaService.buscar(id), HttpStatus.OK);
+    public ResponseEntity<TurmaFormacaoCompetenciaColaboradorListaDTO> buscar(@PathVariable Integer id) {
+        return new ResponseEntity<>(turmaFormacaoCompetenciaColaboradorService.buscar(id), HttpStatus.OK);
     }
 
     @GetMapping
-    public ResponseEntity<List<ColaboradorCompetenciaListaDTO>> buscarTodas() {
-        return new ResponseEntity<>(colaboradorCompetenciaService.buscarTodas(), HttpStatus.OK);
+    public ResponseEntity<List<TurmaFormacaoCompetenciaColaboradorListaDTO>> buscarTodas() {
+        return new ResponseEntity<>(turmaFormacaoCompetenciaColaboradorService.buscarTodas(), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<ColaboradorCompetenciaDTO> inserir(@RequestBody ColaboradorCompetenciaDTO colaboradorCompetenciaDTO) {
-        return new ResponseEntity<>(colaboradorCompetenciaService.inserir(colaboradorCompetenciaDTO), HttpStatus.CREATED);
+    public ResponseEntity<TurmaFormacaoCompetenciaColaboradorDTO> inserir(@RequestBody TurmaFormacaoCompetenciaColaboradorDTO turmaFormacaoCompetenciaColaboradorDTO) {
+        return new ResponseEntity<>(turmaFormacaoCompetenciaColaboradorService.inserir(turmaFormacaoCompetenciaColaboradorDTO), HttpStatus.CREATED);
     }
 
     @PutMapping
-    public ResponseEntity<ColaboradorCompetenciaDTO> atualizar(@RequestBody ColaboradorCompetenciaDTO colaboradorCompetenciaDTO) {
-        return new ResponseEntity<>(colaboradorCompetenciaService.atualizar(colaboradorCompetenciaDTO), HttpStatus.OK);
+    public ResponseEntity<TurmaFormacaoCompetenciaColaboradorDTO> atualizar(@RequestBody TurmaFormacaoCompetenciaColaboradorDTO turmaFormacaoCompetenciaColaboradorDTO) {
+        return new ResponseEntity<>(turmaFormacaoCompetenciaColaboradorService.atualizar(turmaFormacaoCompetenciaColaboradorDTO), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> excluir(@PathVariable Integer id) {
-        colaboradorCompetenciaService.excluir(id);
+        turmaFormacaoCompetenciaColaboradorService.excluir(id);
         return new ResponseEntity<>(null, HttpStatus.OK);
     }
 

@@ -7,24 +7,26 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "colaborador_competencia", schema = "public")
+@Table(name = "turma_formacao_competencia_colaborador", schema = "public")
 @Getter
 @Setter
-public class ColaboradorCompetencia implements Serializable {
+public class TurmaFormacaoCompetenciaColaborador implements Serializable {
 
         @EmbeddedId
-        ColaboradorCompetenciaSenioridade id;
+        Formacao id;
 
-        @ManyToOne
+        @ManyToOne(fetch = FetchType.LAZY)
         @MapsId("id_colaborador")
         @JoinColumn(name = "id_colaborador")
         private Colaborador colaborador;
 
-        @ManyToOne
+        @ManyToOne(fetch = FetchType.LAZY)
         @MapsId("id_competencia")
         @JoinColumn(name = "id_competencia")
         private Competencia competencia;
 
-        private Integer senioridade;
-
+        @ManyToOne(fetch = FetchType.LAZY)
+        @MapsId("id_turma_formacao")
+        @JoinColumn(name = "id_turma_formacao")
+        private TurmaFormacao turmaFormacao;
 }

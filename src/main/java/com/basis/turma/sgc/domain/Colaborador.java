@@ -46,5 +46,8 @@ public class Colaborador implements Serializable {
     private Senioridade senioridade;
 
     @OneToMany(mappedBy = "colaborador")
-    private Set<ColaboradorCompetencia> senioridades;
+    private Set<ColaboradorCompetencia> colaboradores;
+
+    @OneToMany(mappedBy = "colaborador")
+    private Set<TurmaFormacaoCompetenciaColaborador> turmaColaboradores;
 }

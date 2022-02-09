@@ -3,11 +3,9 @@ package com.basis.turma.sgc.domain;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "status", schema = "public")
@@ -21,5 +19,8 @@ public class Status implements Serializable {
 
     @Column(name = "descricao")
     private String descricao;
+
+//    @OneToMany(mappedBy = "status")
+//    private List<TurmaFormacao> turmaFormacao;
 
 }
