@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table(name = "senioridade", schema = "public")
+@Table(name = "senioridade")
 @Getter
 @Setter
 public class Senioridade implements Serializable {
@@ -20,6 +20,4 @@ public class Senioridade implements Serializable {
     @Column(name = "descricao")
     private String descricao;
 
-    @OneToMany(mappedBy = "senioridade")
-    private List<Colaborador> colaborador;
 }

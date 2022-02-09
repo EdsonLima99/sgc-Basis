@@ -16,7 +16,11 @@ public class ColaboradorDTO implements Serializable {
 
     private String sobrenome;
 
+    private String cpf;
+
     private String email;
+
+    private byte[] foto;
 
     private Date dataNascimento;
 

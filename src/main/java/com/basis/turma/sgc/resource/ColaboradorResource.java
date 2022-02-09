@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/colaborador")
+@RequestMapping("/api/colaboradores")
 @RequiredArgsConstructor
 public class ColaboradorResource {
 
@@ -28,13 +28,15 @@ public class ColaboradorResource {
     }
 
     @PostMapping
-    public ResponseEntity<ColaboradorDTO> inserir(@RequestBody ColaboradorDTO colaboradorDTO) {
-        return new ResponseEntity<>(colaboradorService.inserir(colaboradorDTO), HttpStatus.CREATED);
+    public ResponseEntity<Void> inserir(@RequestBody ColaboradorDTO colaboradorDTO) {
+        colaboradorService.inserir(colaboradorDTO);
+        return new ResponseEntity<>(null, HttpStatus.CREATED);
     }
 
     @PutMapping
-    public ResponseEntity<ColaboradorDTO> atualizar(@RequestBody ColaboradorDTO colaboradorDTO) {
-        return new ResponseEntity<>(colaboradorService.atualizar(colaboradorDTO), HttpStatus.OK);
+    public ResponseEntity<Void> atualizar(@RequestBody ColaboradorDTO colaboradorDTO) {
+        colaboradorService.atualizar(colaboradorDTO);
+        return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

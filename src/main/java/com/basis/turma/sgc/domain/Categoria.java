@@ -20,6 +20,4 @@ public class Categoria implements Serializable {
     @Column(name = "descricao")
     private String descricao;
 
-    @OneToMany(mappedBy = "categoria")
-    private List<Competencia> competencia;
 }

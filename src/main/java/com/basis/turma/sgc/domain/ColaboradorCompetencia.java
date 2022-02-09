@@ -13,18 +13,19 @@ import java.io.Serializable;
 public class ColaboradorCompetencia implements Serializable {
 
         @EmbeddedId
-        ColaboradorCompetenciaSenioridade id;
+        ColaboradorCompetenciaPK id;
 
-        @ManyToOne
-        @MapsId("id_colaborador")
+        @ManyToOne(fetch = FetchType.LAZY)
+        @MapsId("idColaborador")
         @JoinColumn(name = "id_colaborador")
         private Colaborador colaborador;
 
-        @ManyToOne
-        @MapsId("id_competencia")
+        @ManyToOne(fetch = FetchType.LAZY)
+        @MapsId("idCompetencia")
         @JoinColumn(name = "id_competencia")
         private Competencia competencia;
 
+        @Column(name = "senioridade")
         private Integer senioridade;
 
 }
