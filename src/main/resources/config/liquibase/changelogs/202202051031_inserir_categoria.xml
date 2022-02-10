@@ -2,35 +2,35 @@
     <changeSet id="10" author="gustavo.linhaus">
         <insert schemaName="public" tableName="categoria">
             <column name="id" value="1"/>
-            <column name="descricao" value="backend"/>
+            <column name="descricao" value="Backend"/>
         </insert>
         <insert schemaName="public" tableName="categoria">
             <column name="id" value="2"/>
-            <column name="descricao" value="frontend"/>
+            <column name="descricao" value="Frontend"/>
         </insert>
         <insert schemaName="public" tableName="categoria">
             <column name="id" value="3"/>
-            <column name="descricao" value="banco"/>
+            <column name="descricao" value="Banco"/>
         </insert>
         <insert schemaName="public" tableName="categoria">
             <column name="id" value="4"/>
-            <column name="descricao" value="arquitetura"/>
+            <column name="descricao" value="Arquitetura"/>
         </insert>
         <insert schemaName="public" tableName="categoria">
             <column name="id" value="5"/>
-            <column name="descricao" value="metodologia ágil"/>
+            <column name="descricao" value="Metodologia Ágil"/>
         </insert>
         <insert schemaName="public" tableName="categoria">
             <column name="id" value="6"/>
-            <column name="descricao" value="testes"/>
+            <column name="descricao" value="Testes"/>
         </insert>
         <insert schemaName="public" tableName="categoria">
             <column name="id" value="7"/>
-            <column name="descricao" value="devops"/>
+            <column name="descricao" value="Devops"/>
         </insert>
         <insert schemaName="public" tableName="categoria">
             <column name="id" value="8"/>
-            <column name="descricao" value="liderança"/>
+            <column name="descricao" value="Liderança"/>
         </insert>
     </changeSet>
 </databaseChangeLog>

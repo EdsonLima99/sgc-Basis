@@ -8,10 +8,10 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table(name = "categoria", schema = "public")
+@Table(name = "senioridade")
 @Getter
 @Setter
-public class Categoria implements Serializable {
+public class Senioridade implements Serializable {
 
     @Id
     @Column(name = "id")

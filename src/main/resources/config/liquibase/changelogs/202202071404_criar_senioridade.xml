@@ -1,12 +1,15 @@
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
-    <changeSet id="3" author="gustavo.linhaus">
-        <createTable tableName="categoria">
+    <changeSet id="1" author="edson.lima">
+        <createTable tableName="senioridade">
             <column name="id" type="integer">
-                <constraints nullable="false" primaryKey="true"/>
+                <constraints nullable="false"/>
             </column>
-            <column name="descricao" type="varchar(16)">
+            <column name="descricao" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
         </createTable>
+
+        <addPrimaryKey tableName="senioridade" columnNames="id" constraintName="pk_senioridade"/>
+
     </changeSet>
 </databaseChangeLog>
