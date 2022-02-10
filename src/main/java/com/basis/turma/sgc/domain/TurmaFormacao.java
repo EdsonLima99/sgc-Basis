@@ -28,10 +28,10 @@ public class TurmaFormacao implements Serializable {
     private String descricao;
 
     @Column(name = "dt_inicio")
-    private Date dataInicio;
+    private LocalDate dataInicio;
 
     @Column(name = "dt_termino")
-    private Date dataTermino;
+    private LocalDate dataTermino;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_status")

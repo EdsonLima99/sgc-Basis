@@ -13,7 +13,7 @@ import java.io.Serializable;
 public class ColaboradorCompetencia implements Serializable {
 
         @EmbeddedId
-        ColaboradorCompetenciaSenioridade id;
+        ColaboradorCompetenciaPK id;
 
         @ManyToOne
         @MapsId("id_colaborador")

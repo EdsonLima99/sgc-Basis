@@ -9,7 +9,7 @@ import java.io.Serializable;
 @Embeddable
 @Getter
 @Setter
-public class ColaboradorCompetenciaSenioridade implements Serializable {
+public class ColaboradorCompetenciaPK implements Serializable {
 
         @Column(name = "id_colaborador")
         private Integer id_colaborador;

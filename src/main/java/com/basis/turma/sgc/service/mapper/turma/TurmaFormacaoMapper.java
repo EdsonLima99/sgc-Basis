@@ -1,10 +1,10 @@
 package com.basis.turma.sgc.service.mapper.turma;
 
-import com.basis.turma.sgc.domain.Colaborador;
+
 import com.basis.turma.sgc.domain.TurmaFormacao;
-import com.basis.turma.sgc.service.dto.colaborador.ColaboradorDTO;
 import com.basis.turma.sgc.service.dto.turma.TurmaFormacaoDTO;
 import com.basis.turma.sgc.service.mapper.EntidadeMapper;
+import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
@@ -16,6 +16,6 @@ public interface TurmaFormacaoMapper extends EntidadeMapper<TurmaFormacao, Turma
     TurmaFormacao paraEntidade(TurmaFormacaoDTO dto);
 
     @Override
-    @Mapping(source = "status.id", target = "statusId")
+    @InheritInverseConfiguration
     TurmaFormacaoDTO paraDTO(TurmaFormacao entidade);
 }
