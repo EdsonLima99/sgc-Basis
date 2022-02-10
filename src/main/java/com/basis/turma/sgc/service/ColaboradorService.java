@@ -4,7 +4,7 @@ import com.basis.turma.sgc.domain.Colaborador;
 import com.basis.turma.sgc.repository.ColaboradorRepository;
 import com.basis.turma.sgc.service.dto.colaborador.ColaboradorDTO;
 import com.basis.turma.sgc.service.dto.colaborador.ColaboradorListaDTO;
-import com.basis.turma.sgc.service.exception.RegraNegocio.Exception;
+import com.basis.turma.sgc.service.exception.regra.Exception;
 import com.basis.turma.sgc.service.mapper.colaborador.ColaboradorListaMapper;
 import com.basis.turma.sgc.service.mapper.colaborador.ColaboradorMapper;
 import lombok.RequiredArgsConstructor;
@@ -35,18 +35,15 @@ public class ColaboradorService {
         return colaboradorListaMapper.listaParaDTOs(listaColaborador);
     }
 
-    public ColaboradorDTO inserir(ColaboradorDTO colaboradorDTO) {
+    public void inserir(ColaboradorDTO colaboradorDTO) {
         Colaborador colaborador = colaboradorMapper.paraEntidade(colaboradorDTO);
-        colaborador = colaboradorRepository.save(colaborador);
+        colaboradorRepository.save(colaborador);
 
-        return colaboradorMapper.paraDTO(colaborador);
     }
 
-    public ColaboradorDTO atualizar(ColaboradorDTO colaboradorDTO) {
+    public void atualizar(ColaboradorDTO colaboradorDTO) {
         Colaborador colaborador = colaboradorMapper.paraEntidade(colaboradorDTO);
-        colaborador = colaboradorRepository.save(colaborador);
-
-        return colaboradorMapper.paraDTO(colaborador);
+        colaboradorRepository.save(colaborador);
     }
 
     public void excluir(Integer id) {

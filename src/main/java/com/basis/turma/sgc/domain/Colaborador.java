@@ -5,11 +5,11 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
-import java.util.Set;
+import java.time.LocalDate;
+import java.util.List;
 
 @Entity
-@Table(name = "colaborador", schema = "public")
+@Table(name = "colaborador")
 @Getter
 @Setter
 public class Colaborador implements Serializable {
@@ -36,18 +36,20 @@ public class Colaborador implements Serializable {
     private byte[] foto;
 
     @Column(name = "dt_nascimento")
-    private Date datanascimento;
+    private LocalDate dataNascimento;
 
     @Column(name = "dt_admissao")
-    private Date dataadmissao;
+    private LocalDate dataAdmissao;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_senioridade")
+    @JoinColumn(name = "id_senioridade", referencedColumnName = "id")
     private Senioridade senioridade;
 
-    @OneToMany(mappedBy = "colaborador")
-    private Set<ColaboradorCompetencia> colaboradores;
+    @OneToMany(mappedBy = "colaborador", fetch = FetchType.LAZY, cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<ColaboradorCompetencia> colaboradores;
 
     @OneToMany(mappedBy = "colaborador")
-    private Set<TurmaFormacaoCompetenciaColaborador> turmaColaboradores;
+    private List<TurmaFormacaoCompetenciaColaborador> turmaColaboradores;
 }
+
+

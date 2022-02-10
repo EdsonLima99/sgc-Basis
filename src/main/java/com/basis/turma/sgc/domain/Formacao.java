@@ -5,20 +5,19 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.Table;
 import java.io.Serializable;
 
 @Embeddable
+@Table (name = "turma_formacao_competencia_colaborador")
 @Getter
 @Setter
 public class Formacao implements Serializable {
 
-        @Column(name = "id_turma_formacao")
-        private Integer id_turma_formacao;
+        private Integer idTurmaFormacao;
 
-        @Column(name = "id_colaborador")
-        private Integer id_colaborador;
+        private Integer idColaborador;
 
-        @Column(name = "id_competencia")
-        private Integer id_competencia;
+        private Integer idCompetencia;
 
 }

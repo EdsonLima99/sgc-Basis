@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -22,19 +23,26 @@ public class CompetenciaResource {
         return new ResponseEntity<>(competenciaService.buscar(id), HttpStatus.OK);
     }
 
+    @GetMapping("/colaborador/{id}")
+    public ResponseEntity<CompetenciaListaDTO> buscarPorColaborador(@PathVariable Integer id) {
+        return new ResponseEntity<>(competenciaService.buscar(id), HttpStatus.OK);
+    }
+
     @GetMapping
     public ResponseEntity<List<CompetenciaListaDTO>> buscarTodas() {
         return new ResponseEntity<>(competenciaService.buscarTodas(), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<CompetenciaDTO> inserir(@RequestBody CompetenciaDTO competenciaDTO) {
-        return new ResponseEntity<>(competenciaService.inserir(competenciaDTO), HttpStatus.CREATED);
+    public ResponseEntity<Void> inserir(@Valid @RequestBody CompetenciaDTO competenciaDTO) {
+        competenciaService.inserir(competenciaDTO);
+        return new ResponseEntity<>(null, HttpStatus.CREATED);
     }
 
     @PutMapping
-    public ResponseEntity<CompetenciaDTO> atualizar(@RequestBody CompetenciaDTO competenciaDTO) {
-        return new ResponseEntity<>(competenciaService.atualizar(competenciaDTO), HttpStatus.OK);
+    public ResponseEntity<Void> atualizar(@Valid @RequestBody CompetenciaDTO competenciaDTO) {
+        competenciaService.atualizar(competenciaDTO);
+        return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

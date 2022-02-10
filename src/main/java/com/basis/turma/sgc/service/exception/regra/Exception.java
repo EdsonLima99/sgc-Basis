@@ -1,4 +1,4 @@
-package com.basis.turma.sgc.service.exception.RegraNegocio;
+package com.basis.turma.sgc.service.exception.regra;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

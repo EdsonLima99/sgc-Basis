@@ -5,10 +5,10 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
 
 @Entity
-@Table(name = "competencia", schema = "public")
+@Table(name = "competencia")
 @Getter
 @Setter
 public class Competencia implements Serializable {
@@ -26,12 +26,11 @@ public class Competencia implements Serializable {
     private String descricao;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_categoria")
+    @JoinColumn(name = "id_categoria", referencedColumnName = "id")
     private Categoria categoria;
 
-    @OneToMany(mappedBy = "competencia")
-    private Set<ColaboradorCompetencia> competencias;
 
     @OneToMany(mappedBy = "competencia")
-    private Set<TurmaFormacaoCompetenciaColaborador> turmaCompetencias;
+    private List<TurmaFormacaoCompetenciaColaborador> turmaCompetencias;
+
 }
