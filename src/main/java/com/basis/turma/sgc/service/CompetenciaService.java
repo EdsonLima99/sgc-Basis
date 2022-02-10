@@ -56,8 +56,8 @@ public class CompetenciaService {
     public void excluir(Integer id) {
         try {
             competenciaRepository.deleteById(id);
-        } catch (Exception e) {
-            throw new Exception("Não foi possível deletar a competência!");
+        } catch (java.lang.Exception e) {
+            throw new Exception("Não foi possível excluir a competência!");
         }
     }
 }

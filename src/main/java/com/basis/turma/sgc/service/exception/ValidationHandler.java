@@ -1,5 +1,6 @@
 package com.basis.turma.sgc.service.exception;
 
+import com.basis.turma.sgc.service.exception.regra.Exception;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpHeaders;
@@ -44,8 +45,8 @@ public class ValidationHandler extends ResponseEntityExceptionHandler {
         return getExceptionResponseEntity(HttpStatus.BAD_REQUEST, request, validationErrors);
     }
 
-    @ExceptionHandler(RegraNegocioException.class)
-    public ResponseEntity<Object> handleException(RegraNegocioException exception, WebRequest request) {
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<Object> handleException(Exception exception, WebRequest request) {
         return getExceptionResponseEntity(HttpStatus.BAD_REQUEST, request, Collections.singletonList(exception.getMessage()));
     }
 
