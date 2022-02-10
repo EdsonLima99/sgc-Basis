@@ -4,7 +4,7 @@ import com.basis.turma.sgc.domain.Colaborador;
 import com.basis.turma.sgc.repository.ColaboradorRepository;
 import com.basis.turma.sgc.service.dto.colaborador.ColaboradorDTO;
 import com.basis.turma.sgc.service.dto.colaborador.ColaboradorListaDTO;
-import com.basis.turma.sgc.service.exception.RegraNegocio.Exception;
+import com.basis.turma.sgc.service.exception.regra.Exception;
 import com.basis.turma.sgc.service.mapper.colaborador.ColaboradorListaMapper;
 import com.basis.turma.sgc.service.mapper.colaborador.ColaboradorMapper;
 import lombok.RequiredArgsConstructor;

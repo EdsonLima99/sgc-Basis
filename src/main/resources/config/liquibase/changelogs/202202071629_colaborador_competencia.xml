@@ -1,13 +1,13 @@
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
     <changeSet id="5" author="edson.lima">
         <createTable tableName="colaborador_competencia">
-            <column name="id_colaborador" type="int">
+            <column name="id_colaborador" type="integer">
                 <constraints nullable="false"/>
             </column>
-            <column name="id_competencia" type="int">
+            <column name="id_competencia" type="integer">
                 <constraints nullable="false"/>
             </column>
-            <column name="senioridade" type="int">
+            <column name="senioridade" type="integer">
                 <constraints nullable="false" checkConstraint="CHECK (senioridade &gt;= 1 AND senioridade &lt;= 3)"/>
             </column>
         </createTable>
