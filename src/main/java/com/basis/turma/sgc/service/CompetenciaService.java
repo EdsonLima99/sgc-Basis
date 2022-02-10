@@ -1,6 +1,7 @@
 package com.basis.turma.sgc.service;
 
 import com.basis.turma.sgc.domain.Competencia;
+import com.basis.turma.sgc.repository.ColaboradorCompetenciaRepository;
 import com.basis.turma.sgc.repository.CompetenciaRepository;
 import com.basis.turma.sgc.service.dto.competencia.CompetenciaDTO;
 import com.basis.turma.sgc.service.dto.competencia.CompetenciaListaDTO;
@@ -21,12 +22,17 @@ public class CompetenciaService {
     private final CompetenciaRepository competenciaRepository;
     private final CompetenciaMapper competenciaMapper;
     private final CompetenciaListaMapper competenciaListaMapper;
+    private final ColaboradorCompetenciaRepository colaboradorCompetenciaRepository;
 
     public CompetenciaListaDTO buscar(Integer id) {
         Competencia competencia = competenciaRepository.findById(id)
                 .orElseThrow(() -> new Exception("Competência não encontrada!"));
 
         return competenciaListaMapper.paraDTO(competencia);
+    }
+
+    public List<Integer> buscarPorColaborador(Integer id) {
+        return colaboradorCompetenciaRepository.buscarPorColaborador(id);
     }
 
     public List<CompetenciaListaDTO> buscarTodas() {
