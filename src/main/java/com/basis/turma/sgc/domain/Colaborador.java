@@ -32,6 +32,7 @@ public class Colaborador implements Serializable {
     @Column(name = "email")
     private String email;
 
+    @Lob
     @Column(name = "foto")
     private byte[] foto;
 

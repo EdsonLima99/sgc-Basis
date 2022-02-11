@@ -16,7 +16,7 @@
             <column name="email" type="varchar(255)">
                 <constraints nullable="false" unique="true"/>
             </column>
-            <column name="foto" type="bytea">
+            <column name="foto" type="blob">
                 <constraints nullable="true"/>
             </column>
             <column name="dt_nascimento" type="date">

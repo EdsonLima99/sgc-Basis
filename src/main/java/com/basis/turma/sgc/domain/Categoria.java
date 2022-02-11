@@ -5,10 +5,9 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 
 @Entity
-@Table(name = "categoria", schema = "public")
+@Table(name = "categoria")
 @Getter
 @Setter
 public class Categoria implements Serializable {
