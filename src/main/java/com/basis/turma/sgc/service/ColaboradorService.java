@@ -35,15 +35,18 @@ public class ColaboradorService {
         return colaboradorListaMapper.listaParaDTOs(listaColaborador);
     }
 
-    public void inserir(ColaboradorDTO colaboradorDTO) {
+    public ColaboradorDTO inserir(ColaboradorDTO colaboradorDTO) {
         Colaborador colaborador = colaboradorMapper.paraEntidade(colaboradorDTO);
-        colaboradorRepository.save(colaborador);
+        colaborador = colaboradorRepository.save(colaborador);
 
+        return colaboradorMapper.paraDTO(colaborador);
     }
 
-    public void atualizar(ColaboradorDTO colaboradorDTO) {
+    public ColaboradorDTO atualizar(ColaboradorDTO colaboradorDTO) {
         Colaborador colaborador = colaboradorMapper.paraEntidade(colaboradorDTO);
-        colaboradorRepository.save(colaborador);
+        colaborador = colaboradorRepository.save(colaborador);
+
+        return colaboradorMapper.paraDTO(colaborador);
     }
 
     public void excluir(Integer id) {

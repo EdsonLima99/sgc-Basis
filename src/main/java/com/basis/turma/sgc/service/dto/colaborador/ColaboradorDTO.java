@@ -1,10 +1,12 @@
 package com.basis.turma.sgc.service.dto.colaborador;
 
+import com.basis.turma.sgc.service.dto.colabcomp.ColaboradorCompetenciaDTO;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
@@ -22,10 +24,11 @@ public class ColaboradorDTO implements Serializable {
 
     private byte[] foto;
 
-    private Date dataNascimento;
+    private LocalDate dataNascimento;
 
-    private Date dataAdmissao;
+    private LocalDate dataAdmissao;
 
     private Integer senioridadeId;
 
+    private List<ColaboradorCompetenciaDTO> colaboradores;
 }

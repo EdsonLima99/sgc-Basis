@@ -12,6 +12,9 @@ public interface ColaboradorMapper extends EntidadeMapper<Colaborador, Colaborad
 
     @Override
     @Mapping(source = "senioridadeId", target = "senioridade.id")
+    @Mapping(source = "colaboradores.idColaborador", target = "colaboradores.id.idColaborador")
+    @Mapping(source = "colaboradores.idCompetencia", target = "colaboradores.id.idCompetencia")
+    @Mapping(source = "colaboradores.senioridade", target = "colaboradores.senioridade")
     Colaborador paraEntidade(ColaboradorDTO dto);
 
     @Override

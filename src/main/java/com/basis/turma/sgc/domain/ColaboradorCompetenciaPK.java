@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Embeddable
-@Table(name = "colaborador_competencia", schema = "public")
+@Table(name = "colaborador_competencia")
 @Getter
 @Setter
 public class ColaboradorCompetenciaPK implements Serializable {

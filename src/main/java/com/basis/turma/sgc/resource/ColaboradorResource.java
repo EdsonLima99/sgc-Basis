@@ -28,15 +28,13 @@ public class ColaboradorResource {
     }
 
     @PostMapping
-    public ResponseEntity<Void> inserir(@RequestBody ColaboradorDTO colaboradorDTO) {
-        colaboradorService.inserir(colaboradorDTO);
-        return new ResponseEntity<>(null, HttpStatus.CREATED);
+    public ResponseEntity<ColaboradorDTO> inserir(@RequestBody ColaboradorDTO colaboradorDTO) {
+        return new ResponseEntity<>(colaboradorService.inserir(colaboradorDTO), HttpStatus.CREATED);
     }
 
     @PutMapping
-    public ResponseEntity<Void> atualizar(@RequestBody ColaboradorDTO colaboradorDTO) {
-        colaboradorService.atualizar(colaboradorDTO);
-        return new ResponseEntity<>(null, HttpStatus.OK);
+    public ResponseEntity<ColaboradorDTO> atualizar(@RequestBody ColaboradorDTO colaboradorDTO) {
+        return new ResponseEntity<>(colaboradorService.atualizar(colaboradorDTO), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
