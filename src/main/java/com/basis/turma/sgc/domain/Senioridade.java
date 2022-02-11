@@ -5,12 +5,13 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
-@Table(name = "categoria")
+@Table(name = "senioridade")
 @Getter
 @Setter
-public class Categoria implements Serializable {
+public class Senioridade implements Serializable {
 
     @Id
     @Column(name = "id")
