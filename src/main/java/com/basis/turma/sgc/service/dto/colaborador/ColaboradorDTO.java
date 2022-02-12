@@ -30,5 +30,5 @@ public class ColaboradorDTO implements Serializable {
 
     private Integer senioridadeId;
 
-    private List<ColaboradorCompetenciaDTO> colaboradores;
+//    private List<ColaboradorCompetenciaDTO> colaboradores;
 }

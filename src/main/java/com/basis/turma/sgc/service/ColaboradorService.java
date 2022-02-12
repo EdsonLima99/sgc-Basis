@@ -1,6 +1,7 @@
 package com.basis.turma.sgc.service;
 
 import com.basis.turma.sgc.domain.Colaborador;
+import com.basis.turma.sgc.domain.ColaboradorCompetencia;
 import com.basis.turma.sgc.repository.ColaboradorRepository;
 import com.basis.turma.sgc.service.dto.colaborador.ColaboradorDTO;
 import com.basis.turma.sgc.service.dto.colaborador.ColaboradorListaDTO;
@@ -11,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -37,6 +39,20 @@ public class ColaboradorService {
 
     public ColaboradorDTO inserir(ColaboradorDTO colaboradorDTO) {
         Colaborador colaborador = colaboradorMapper.paraEntidade(colaboradorDTO);
+//        List<ColaboradorCompetencia> listaColaboradoresCompetencias = new ArrayList<>();
+//
+//
+//
+//       for(int i = 0; i < colaboradorDTO.getColaboradores().size(); i++) {
+//           ColaboradorCompetencia colaboradorCompetencia =  new ColaboradorCompetencia();
+//           colaboradorCompetencia.getId().setIdColaborador(colaboradorDTO.getColaboradores().get(i).getColaboradorId());
+//           colaboradorCompetencia.getId().setIdCompetencia(colaboradorDTO.getColaboradores().get(i).getCompetenciaId());
+//           colaboradorCompetencia.setSenioridade(colaboradorDTO.getColaboradores().get(i).getSenioridade());
+//           //colaboradorDTO.getColaboradores().get(i).
+//           listaColaboradoresCompetencias.add(colaboradorCompetencia);
+//       }
+//       colaborador.getColaboradores().addAll(listaColaboradoresCompetencias);
+
         colaborador = colaboradorRepository.save(colaborador);
 
         return colaboradorMapper.paraDTO(colaborador);

@@ -9,9 +9,9 @@ import java.io.Serializable;
 @Setter
 public class ColaboradorCompetenciaDTO implements Serializable {
 
-    private Integer idColaborador;
+    private Integer colaboradorId;
 
-    private Integer idCompetencia;
+    private Integer competenciaId;
 
     private Integer senioridade;
 }

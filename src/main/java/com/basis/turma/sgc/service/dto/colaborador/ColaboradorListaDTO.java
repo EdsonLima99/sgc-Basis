@@ -27,6 +27,6 @@ public class ColaboradorListaDTO implements Serializable {
 
     private SelecionaDTO senioridade;
 
-    private List<ColaboradorCompetenciaDTO> colaboradores;
+//    private List<ColaboradorCompetenciaDTO> colaboradores;
 
 }
