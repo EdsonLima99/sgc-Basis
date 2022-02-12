@@ -48,7 +48,7 @@ public class Colaborador implements Serializable {
     @OneToMany(mappedBy = "colaborador", fetch = FetchType.LAZY, cascade = CascadeType.ALL,orphanRemoval = true)
     private List<ColaboradorCompetencia> colaboradores;
 
-    @OneToMany(mappedBy = "colaborador")
+    @OneToMany(mappedBy = "colaborador", fetch = FetchType.LAZY, cascade = CascadeType.ALL,orphanRemoval = true)
     private List<TurmaFormacaoCompetenciaColaborador> turmaColaboradores;
 }
 

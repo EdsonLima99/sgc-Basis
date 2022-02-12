@@ -5,12 +5,11 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
-import java.util.Set;
 
 @Entity
-@Table(name = "turma_formacao", schema = "public")
+@Table(name = "turma_formacao")
 @Getter
 @Setter
 public class TurmaFormacao implements Serializable {
@@ -38,6 +37,5 @@ public class TurmaFormacao implements Serializable {
     private Status status;
 
     @OneToMany(mappedBy = "turmaFormacao")
-    private Set<TurmaFormacaoCompetenciaColaborador> senioridades;
-
+    private List<TurmaFormacaoCompetenciaColaborador> turmaFormacao;
 }

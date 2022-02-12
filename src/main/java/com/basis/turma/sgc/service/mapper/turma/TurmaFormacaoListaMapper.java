@@ -8,5 +8,5 @@ import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface TurmaFormacaoListaMapper extends EntidadeMapper<TurmaFormacao, TurmaFormacaoListaDTO> {
-};
+}
 

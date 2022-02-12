@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table(name = "status", schema = "public")
+@Table(name = "status")
 @Getter
 @Setter
 public class Status implements Serializable {

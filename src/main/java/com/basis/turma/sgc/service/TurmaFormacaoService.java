@@ -4,7 +4,7 @@ import com.basis.turma.sgc.domain.TurmaFormacao;
 import com.basis.turma.sgc.repository.TurmaFormacaoRepository;
 import com.basis.turma.sgc.service.dto.turma.TurmaFormacaoDTO;
 import com.basis.turma.sgc.service.dto.turma.TurmaFormacaoListaDTO;
-import com.basis.turma.sgc.service.exception.RegraNegocioException;
+import com.basis.turma.sgc.service.exception.regra.Exception;
 import com.basis.turma.sgc.service.mapper.turma.TurmaFormacaoMapper;
 import com.basis.turma.sgc.service.mapper.turma.TurmaFormacaoListaMapper;
 import lombok.RequiredArgsConstructor;
@@ -31,7 +31,7 @@ public class TurmaFormacaoService {
 
     public TurmaFormacaoListaDTO buscarPorId(Integer id){
         TurmaFormacao turmaFormacao = turmaFormacaoRepository.findById(id)
-                .orElseThrow(() -> new RegraNegocioException("Turma não encontrada"));
+                .orElseThrow(() -> new Exception("Turma não encontrada"));
 
         return turmaFormacaoListaMapper.paraDTO(turmaFormacao);
     }
@@ -53,7 +53,7 @@ public class TurmaFormacaoService {
         try {
             turmaFormacaoRepository.deleteById(id);
         } catch (Exception e) {
-            throw new RegraNegocioException("Não foi possível deletar a competência");
+            throw new Exception("Não foi possível deletar a competência");
         }
     }
 

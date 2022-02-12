@@ -1,6 +1,5 @@
 package com.basis.turma.sgc.resource;
 
-import com.basis.turma.sgc.domain.TurmaFormacao;
 import com.basis.turma.sgc.service.TurmaFormacaoService;
 import com.basis.turma.sgc.service.dto.turma.TurmaFormacaoDTO;
 import com.basis.turma.sgc.service.dto.turma.TurmaFormacaoListaDTO;
