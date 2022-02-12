@@ -10,8 +10,11 @@ import com.basis.turma.sgc.service.mapper.competencia.CompetenciaMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+
+
 import java.text.ParseException;
 import java.util.Collection;
+
 
 @Component
 public class CompetenciaBuilder extends ConstrutorDeEntidade<CompetenciaDTO>{
@@ -57,6 +60,5 @@ public class CompetenciaBuilder extends ConstrutorDeEntidade<CompetenciaDTO>{
     protected CompetenciaDTO obterPorId(Long id) {
         return competenciaListaMapper.paraEntidade(competenciaService.buscar(id.intValue()));
     }
-
 
 }

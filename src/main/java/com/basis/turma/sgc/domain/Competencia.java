@@ -5,7 +5,9 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+
 import java.util.List;
+
 
 @Entity
 @Table(name = "competencia")
@@ -29,8 +31,7 @@ public class Competencia implements Serializable {
     @JoinColumn(name = "id_categoria", referencedColumnName = "id")
     private Categoria categoria;
 
-
-    @OneToMany(mappedBy = "competencia")
-    private List<TurmaFormacaoCompetenciaColaborador> turmaCompetencias;
+//    @OneToMany(mappedBy = "competencia")
+//    private List<TurmaFormacaoCompetenciaColaborador> turmaCompetencias;
 
 }

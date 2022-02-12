@@ -32,6 +32,7 @@ public class Colaborador implements Serializable {
     @Column(name = "email")
     private String email;
 
+    @Lob
     @Column(name = "foto")
     private byte[] foto;
 
@@ -45,11 +46,14 @@ public class Colaborador implements Serializable {
     @JoinColumn(name = "id_senioridade", referencedColumnName = "id")
     private Senioridade senioridade;
 
-    @OneToMany(mappedBy = "colaborador", fetch = FetchType.LAZY, cascade = CascadeType.ALL,orphanRemoval = true)
-    private List<ColaboradorCompetencia> colaboradores;
+
+    //    @OneToMany(mappedBy = "colaborador", fetch = FetchType.LAZY, cascade = CascadeType.ALL,orphanRemoval = true)
+//    private List<ColaboradorCompetencia> colaboradores;
 
     @OneToMany(mappedBy = "colaborador", fetch = FetchType.LAZY, cascade = CascadeType.ALL,orphanRemoval = true)
     private List<TurmaFormacaoCompetenciaColaborador> turmaColaboradores;
+
+
 }
 
 
