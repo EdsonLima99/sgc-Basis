@@ -28,9 +28,8 @@ public class ColaboradorResource {
     }
 
     @PostMapping
-    public ResponseEntity<Void> inserir(@RequestBody ColaboradorDTO colaboradorDTO) {
-        colaboradorService.inserir(colaboradorDTO);
-        return new ResponseEntity<>(null, HttpStatus.CREATED);
+    public ResponseEntity<ColaboradorDTO> inserir(@RequestBody ColaboradorDTO colaboradorDTO) {
+        return new ResponseEntity<>(colaboradorService.inserir(colaboradorDTO), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
