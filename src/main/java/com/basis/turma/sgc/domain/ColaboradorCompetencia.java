@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "colaborador_competencia", schema = "public")
+@Table(name = "colaborador_competencia")
 @Getter
 @Setter
 public class ColaboradorCompetencia implements Serializable {
@@ -16,12 +16,12 @@ public class ColaboradorCompetencia implements Serializable {
         ColaboradorCompetenciaPK id;
 
         @ManyToOne(fetch = FetchType.LAZY)
-        @MapsId("idColaborador")
+        @MapsId("colaboradorId")
         @JoinColumn(name = "id_colaborador")
         private Colaborador colaborador;
 
         @ManyToOne(fetch = FetchType.LAZY)
-        @MapsId("idCompetencia")
+        @MapsId("competenciaId")
         @JoinColumn(name = "id_competencia")
         private Competencia competencia;
 

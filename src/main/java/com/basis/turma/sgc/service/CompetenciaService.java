@@ -47,10 +47,18 @@ public class CompetenciaService {
 
     }
 
-    public void atualizar(CompetenciaDTO competenciaDTO) {
-        Competencia competencia = competenciaMapper.paraEntidade(competenciaDTO);
-        competenciaRepository.save(competencia);
+    public void atualizar(CompetenciaDTO competenciaDTO, Integer id) {
 
+        Competencia competencia = competenciaRepository.findById(id) //novo
+                .orElseThrow(() -> new Exception("Competência não encontrada!"));
+
+        Competencia comp = competenciaMapper.paraEntidade(competenciaDTO);
+
+        competencia.setNome(comp.getNome());
+        competencia.setDescricao(comp.getDescricao());
+        competencia.setCategoria(comp.getCategoria());
+
+        competenciaRepository.save(competencia);
     }
 
     public void excluir(Integer id) {

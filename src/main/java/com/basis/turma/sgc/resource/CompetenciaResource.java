@@ -39,16 +39,16 @@ public class CompetenciaResource {
         return new ResponseEntity<>(null, HttpStatus.CREATED);
     }
 
-    @PutMapping
-    public ResponseEntity<Void> atualizar(@Valid @RequestBody CompetenciaDTO competenciaDTO) {
-        competenciaService.atualizar(competenciaDTO);
-        return new ResponseEntity<>(null, HttpStatus.OK);
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> atualizar(@Valid @RequestBody CompetenciaDTO competenciaDTO, @PathVariable Integer id) {
+        competenciaService.atualizar(competenciaDTO, id);
+        return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> excluir(@PathVariable Integer id) {
         competenciaService.excluir(id);
-        return new ResponseEntity<>(null, HttpStatus.OK);
+        return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
     }
 
 }

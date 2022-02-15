@@ -6,6 +6,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -46,6 +47,13 @@ public class Colaborador implements Serializable {
     @JoinColumn(name = "id_senioridade", referencedColumnName = "id")
     private Senioridade senioridade;
 
-    @OneToMany(mappedBy = "colaborador", fetch = FetchType.LAZY, cascade = CascadeType.ALL,orphanRemoval = true)
-    private List<ColaboradorCompetencia> colaboradores;
+    @OneToMany(mappedBy = "colaborador", fetch = FetchType.LAZY , cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ColaboradorCompetencia> colaboradorCompetencias;
+
+    @OneToMany(mappedBy = "colaborador", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<TurmaFormacaoCompetenciaColaborador> turmaFormacaoCompetenciasColaboradores;
+
+
 }
+
+

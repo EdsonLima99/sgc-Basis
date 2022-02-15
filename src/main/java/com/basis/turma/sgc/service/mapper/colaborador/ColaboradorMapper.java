@@ -12,9 +12,11 @@ public interface ColaboradorMapper extends EntidadeMapper<Colaborador, Colaborad
 
     @Override
     @Mapping(source = "senioridadeId", target = "senioridade.id")
+    @Mapping(target = "colaboradorCompetencias", ignore = true)
     Colaborador paraEntidade(ColaboradorDTO dto);
 
     @Override
     @InheritInverseConfiguration
+    @Mapping(target = "colaboradorCompetencias", ignore = true)
     ColaboradorDTO paraDTO(Colaborador entidade);
 }
