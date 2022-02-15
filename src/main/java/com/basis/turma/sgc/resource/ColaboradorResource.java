@@ -32,15 +32,16 @@ public class ColaboradorResource {
         return new ResponseEntity<>(colaboradorService.inserir(colaboradorDTO), HttpStatus.CREATED);
     }
 
-    @PutMapping
-    public ResponseEntity<ColaboradorDTO> atualizar(@RequestBody ColaboradorDTO colaboradorDTO) {
-        return new ResponseEntity<>(colaboradorService.atualizar(colaboradorDTO), HttpStatus.OK);
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> atualizar(@RequestBody ColaboradorDTO colaboradorDTO, @PathVariable Integer id) {
+        colaboradorService.atualizar(colaboradorDTO, id);
+        return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> excluir(@PathVariable Integer id) {
         colaboradorService.excluir(id);
-        return new ResponseEntity<>(null, HttpStatus.OK);
+        return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
     }
 
 }

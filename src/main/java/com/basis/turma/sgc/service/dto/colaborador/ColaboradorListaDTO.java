@@ -1,7 +1,7 @@
 package com.basis.turma.sgc.service.dto.colaborador;
 
 import com.basis.turma.sgc.service.dto.SelecionaDTO;
-import com.basis.turma.sgc.service.dto.colabcomp.ColaboradorCompetenciaDTO;
+import com.basis.turma.sgc.service.dto.colabcomp.ColaboradorCompetenciaListaDTO;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,6 +27,5 @@ public class ColaboradorListaDTO implements Serializable {
 
     private SelecionaDTO senioridade;
 
-//    private List<ColaboradorCompetenciaDTO> colaboradores;
-
+    private List<ColaboradorCompetenciaListaDTO> colaboradorCompetencias;
 }

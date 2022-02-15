@@ -6,6 +6,8 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 
+import java.util.List;
+
 @Entity
 @Table(name = "competencia")
 @Getter
@@ -27,4 +29,8 @@ public class Competencia implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_categoria", referencedColumnName = "id")
     private Categoria categoria;
+
+    @OneToMany(mappedBy = "competencia", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<TurmaFormacaoCompetenciaColaborador>  turmaFormacaoCompetenciasColaboradores;
+
 }
