@@ -66,7 +66,6 @@ public class ColaboradorService {
         }
 
         colaboradorRepository.save(colaborador);
-
     }
 
     public void atualizar(ColaboradorDTO colaboradorDTO, Integer id) {
@@ -100,7 +99,6 @@ public class ColaboradorService {
         }
 
         colaboradorCompetenciaRepository.saveAll(listaColaboradorCompetencia);
-
     }
 
     public void excluir(Integer id) {
