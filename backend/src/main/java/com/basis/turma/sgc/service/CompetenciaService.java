@@ -37,7 +37,6 @@ public class CompetenciaService {
 
     public List<CompetenciaListaDTO> buscarTodas() {
         List<Competencia> listaCompetencias = competenciaRepository.findAll();
-
         return competenciaListaMapper.listaParaDTOs(listaCompetencias);
     }
 

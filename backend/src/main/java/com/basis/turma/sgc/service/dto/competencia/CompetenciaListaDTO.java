@@ -16,5 +16,5 @@ public class CompetenciaListaDTO implements Serializable {
 
     private String descricao;
 
-    private SelecionaDTO categoria;
+    private SelecionaDTO categoriaId;
 }
