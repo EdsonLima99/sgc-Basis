@@ -1,0 +1,50 @@
+<p-table>
+    <ng-template pTemplate="caption">
+        <h1 style="text-align: left">Colaboradores</h1>
+        <div style="text-align: right">
+            <button
+                type="button"
+                routerLink="novo"
+                pButton
+                icon="pi pi-plus"
+                label="Novo"
+                class="ui-button-success"
+            ></button>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th>Nome</th>
+            <th>Data de Admissao</th>
+            <th>E-mail</th>
+            <th>Senioridade</th>
+            <th></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr *ngFor="let colaborador of colaboradores">
+            <td>{{colaborador.nome}} {{colaborador.sobrenome}}</td>
+            <td>{{colaborador.email}}</td>
+            <td>{{colaborador.dataAdmissao}}</td>
+            <td>{{colaborador.senioridadeId.descricao}}</td>
+            <td>
+                <button
+                    type="button"
+                    [routerLink]="['alterar', '1']"
+                    pButton
+                    icon="ui ui-icon-pencil"
+                    label="Editar"
+                    class="ui-button-info"
+                ></button>
+                <button
+                    type="button"
+                    pButton
+                    icon="ui ui-icon-trash"
+                    label="Excluir"
+                    class="ui-button-danger"
+                ></button>
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="summary" let-rowData> </ng-template>
+</p-table>
