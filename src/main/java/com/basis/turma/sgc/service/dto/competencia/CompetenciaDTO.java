@@ -13,12 +13,12 @@ public class CompetenciaDTO implements Serializable {
 
     private Integer id;
 
-    @NotBlank(message = "O nome não pode ser nulo ou vazio")
+    @NotBlank(message = "Nome é obrigatório!")
     private String nome;
 
-    @NotBlank(message = "A descrição não pode ser nula ou vazia")
+    @NotBlank(message = "Descrição é obrigatória!")
     private String descricao;
 
-    @NotNull(message = "A categoria não pode ser nula")
+    @NotNull(message = "Categoria é obrigatória!")
     private Integer categoriaId;
 }

@@ -9,63 +9,52 @@ import com.basis.turma.sgc.service.exception.regra.Exception;
 import com.basis.turma.sgc.service.mapper.competencia.CompetenciaListaMapper;
 import com.basis.turma.sgc.service.mapper.competencia.CompetenciaMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
 @RequiredArgsConstructor
 public class CompetenciaService {
 
-    private final CompetenciaRepository competenciaRepository;
     private final CompetenciaMapper competenciaMapper;
     private final CompetenciaListaMapper competenciaListaMapper;
-    private final ColaboradorCompetenciaRepository colaboradorCompetenciaRepository;
+    private final CompetenciaRepository competenciaRepository;
 
     public CompetenciaListaDTO buscar(Integer id) {
-        Competencia competencia = competenciaRepository.findById(id)
-                .orElseThrow(() -> new Exception("Competência não encontrada!"));
-
-        return competenciaListaMapper.paraDTO(competencia);
-    }
-
-    public List<Integer> buscarPorColaborador(Integer id) {
-        return colaboradorCompetenciaRepository.buscarPorColaborador(id);
+        Optional<Competencia> competenciaOptional = buscarPorId(id);
+        if(!competenciaOptional.isPresent()) {
+            throw new Exception("Competência não encontrada!");
+        }
+        return competenciaListaMapper.paraDTO(competenciaOptional.get());
     }
 
     public List<CompetenciaListaDTO> buscarTodas() {
-        List<Competencia> listaCompetencias = competenciaRepository.findAll();
-
-        return competenciaListaMapper.listaParaDTOs(listaCompetencias);
+        List<Competencia> lista = competenciaRepository.findAll();
+        return competenciaListaMapper.listaParaDTOs(lista);
     }
 
     public void inserir(CompetenciaDTO competenciaDTO) {
         Competencia competencia = competenciaMapper.paraEntidade(competenciaDTO);
         competenciaRepository.save(competencia);
-
     }
 
     public void atualizar(CompetenciaDTO competenciaDTO, Integer id) {
-
-        Competencia competencia = competenciaRepository.findById(id) //novo
-                .orElseThrow(() -> new Exception("Competência não encontrada!"));
-
-        Competencia comp = competenciaMapper.paraEntidade(competenciaDTO);
-
-        competencia.setNome(comp.getNome());
-        competencia.setDescricao(comp.getDescricao());
-        competencia.setCategoria(comp.getCategoria());
-
+        Optional<Competencia> competenciaOptional = buscarPorId(id);
+        if(!competenciaOptional.isPresent()) {
+            throw new Exception("Competência não encontrada!");
+        }
+        competenciaDTO.setId(id);
+        Competencia competencia = competenciaMapper.paraEntidade(competenciaDTO);
         competenciaRepository.save(competencia);
     }
 
-    public void excluir(Integer id) {
-        try {
-            competenciaRepository.deleteById(id);
-        } catch (java.lang.Exception e) {
-            throw new Exception("Não foi possível excluir a competência!");
-        }
+    public Optional<Competencia> buscarPorId(Integer id) {
+        return competenciaRepository.findById(id);
     }
+
 }

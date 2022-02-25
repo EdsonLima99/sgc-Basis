@@ -18,13 +18,13 @@ public class StatusResource {
     private final StatusService statusService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<SelecionaDTO> buscarPorId(@PathVariable Integer id){
-        return new ResponseEntity<>(statusService.buscarPorId(id), HttpStatus.OK);
+    public ResponseEntity<SelecionaDTO> buscar(@PathVariable Integer id){
+        return new ResponseEntity<>(statusService.buscar(id), HttpStatus.OK);
     }
 
     @GetMapping
-    public ResponseEntity<List<SelecionaDTO>> buscarTodas() {
-        return new ResponseEntity<>(statusService.buscarTodas(), HttpStatus.OK);
+    public ResponseEntity<List<SelecionaDTO>> buscarTodos() {
+        return new ResponseEntity<>(statusService.buscarTodos(), HttpStatus.OK);
     }
 
 }

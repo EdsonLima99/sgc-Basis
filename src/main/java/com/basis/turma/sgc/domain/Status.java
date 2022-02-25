@@ -14,10 +14,10 @@ import java.util.List;
 public class Status implements Serializable {
 
     @Id
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Column(name = "descricao")
+    @Column(name = "descricao", nullable = false, length = 9)
     private String descricao;
 
 }

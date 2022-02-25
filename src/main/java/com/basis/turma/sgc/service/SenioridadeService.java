@@ -17,20 +17,17 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SenioridadeService {
 
-    private final SenioridadeRepository senioridadeRepository;
-    private final SenioridadeMapper senioridadeMapper;
     private final SenioridadeListaMapper senioridadeListaMapper;
+    private final SenioridadeRepository senioridadeRepository;
 
     public SelecionaDTO buscar(Integer id) {
         Senioridade senioridade = senioridadeRepository.findById(id)
                 .orElseThrow(() -> new Exception("Senioridade não encontrada!"));
-
         return senioridadeListaMapper.paraDTO(senioridade);
     }
 
     public List<SelecionaDTO> buscarTodas() {
-        List<Senioridade> listaSenioridade = senioridadeRepository.findAll();
-
-        return senioridadeListaMapper.listaParaDTOs(listaSenioridade);
+        List<Senioridade> lista = senioridadeRepository.findAll();
+        return senioridadeListaMapper.listaParaDTOs(lista);
     }
 }

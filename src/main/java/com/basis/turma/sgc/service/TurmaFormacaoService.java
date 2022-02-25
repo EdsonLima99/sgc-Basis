@@ -1,7 +1,9 @@
 package com.basis.turma.sgc.service;
 
+import com.basis.turma.sgc.domain.Competencia;
 import com.basis.turma.sgc.domain.TurmaFormacao;
 import com.basis.turma.sgc.domain.TurmaFormacaoCompetenciaColaborador;
+import com.basis.turma.sgc.repository.TurmaFormacaoCompetenciaColaboradorRepository;
 import com.basis.turma.sgc.repository.TurmaFormacaoRepository;
 import com.basis.turma.sgc.service.dto.turma.TurmaFormacaoDTO;
 import com.basis.turma.sgc.service.dto.turma.TurmaFormacaoListaDTO;
@@ -12,9 +14,9 @@ import com.basis.turma.sgc.service.mapper.turmacompcolab.TurmaFormacaoCompetenci
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -22,66 +24,55 @@ import java.util.List;
 public class TurmaFormacaoService {
 
     private final TurmaFormacaoMapper turmaFormacaoMapper;
-    private final TurmaFormacaoRepository turmaFormacaoRepository;
-    private final TurmaFormacaoListaMapper turmaFormacaoListaMapper;
     private final TurmaFormacaoCompetenciaColaboradorMapper turmaFormacaoCompetenciaColaboradorMapper;
+    private final TurmaFormacaoListaMapper turmaFormacaoListaMapper;
+    private final TurmaFormacaoRepository turmaFormacaoRepository;
+    private final TurmaFormacaoCompetenciaColaboradorRepository turmaFormacaoCompetenciaColaboradorRepository;
 
-    public void inserir(TurmaFormacaoDTO turmaFormacaoDTO) {
-
-        TurmaFormacao turmaFormacao = turmaFormacaoMapper.paraEntidade(turmaFormacaoDTO);
-        turmaFormacao.setTurmaFormacaoCompetenciasColaboradores(new ArrayList<>());
-
-        turmaFormacao = turmaFormacaoRepository.save(turmaFormacao);
-
-        for(int i = 0; i < turmaFormacaoDTO.getTurmaFormacaoCompetenciasColaboradores().size(); i++) {
-            turmaFormacaoDTO.getTurmaFormacaoCompetenciasColaboradores().get(i).setTurmaFormacaoId(turmaFormacao.getId());
-            TurmaFormacaoCompetenciaColaborador turmaFormacaoCompetenciaColaborador = turmaFormacaoCompetenciaColaboradorMapper.paraEntidade(turmaFormacaoDTO.getTurmaFormacaoCompetenciasColaboradores().get(i));
-            turmaFormacao.getTurmaFormacaoCompetenciasColaboradores().add(turmaFormacaoCompetenciaColaborador);
+    public TurmaFormacaoListaDTO buscar(Integer id){
+        Optional<TurmaFormacao> turmaFormacaoOptional = buscarPorId(id);
+        if(!turmaFormacaoOptional.isPresent()) {
+            throw new Exception("Turma não encontrada!");
         }
-
-        turmaFormacaoRepository.save(turmaFormacao);
-
-    }
-
-    public TurmaFormacaoListaDTO buscarPorId(Integer id){
-
-        TurmaFormacao turmaFormacao = turmaFormacaoRepository.findById(id)
-                .orElseThrow(() -> new Exception("Turma não encontrada!"));
-
-        return turmaFormacaoListaMapper.paraDTO(turmaFormacao);
+        return turmaFormacaoListaMapper.paraDTO(turmaFormacaoOptional.get());
     }
 
     public List<TurmaFormacaoListaDTO> buscarTodas() {
-
-        List<TurmaFormacao> listaTurmas= turmaFormacaoRepository.findAll();
-
-        return turmaFormacaoListaMapper.listaParaDTOs(listaTurmas);
+        List<TurmaFormacao> lista = turmaFormacaoRepository.findAll();
+        return turmaFormacaoListaMapper.listaParaDTOs(lista);
     }
+
+    public void inserir(TurmaFormacaoDTO turmaFormacaoDTO) {
+        TurmaFormacao turmaFormacao = turmaFormacaoMapper.paraEntidade(turmaFormacaoDTO);
+        turmaFormacao = turmaFormacaoRepository.save(turmaFormacao);
+        int turmaFormacaoId = turmaFormacao.getId();
+        List<TurmaFormacaoCompetenciaColaborador> lista = turmaFormacaoDTO.getTurmaFormacaoCompetenciasColaboradores()
+                .stream().map(t -> {
+                    t.setTurmaFormacaoId(turmaFormacaoId);
+                    return turmaFormacaoCompetenciaColaboradorMapper.paraEntidade(t);
+                }).collect(Collectors.toList());
+        turmaFormacaoCompetenciaColaboradorRepository.saveAll(lista);
+    }
+
 
     public void atualizar(TurmaFormacaoDTO turmaFormacaoDTO, Integer id) {
-
-        TurmaFormacao turmaFormacao = turmaFormacaoRepository.findById(id)
-                .orElseThrow(() -> new Exception("Turma não encontrada!"));
-
-        TurmaFormacao turma = turmaFormacaoMapper.paraEntidade(turmaFormacaoDTO);
-
-       turmaFormacao.setNome(turma.getNome());
-       turmaFormacao.setDescricao(turma.getDescricao());
-       turmaFormacao.setDataInicio(turma.getDataInicio());
-       turmaFormacao.setDataTermino(turma.getDataTermino());
-       turmaFormacao.setStatus(turma.getStatus());
-
-       turmaFormacaoRepository.save(turmaFormacao);
-
+        Optional<TurmaFormacao> turmaFormacaoOptional = buscarPorId(id);
+        if(!turmaFormacaoOptional.isPresent()) {
+            throw new Exception("Turma não encontrada!");
+        }
+        turmaFormacaoDTO.setId(id);
+        TurmaFormacao turmaFormacao = turmaFormacaoMapper.paraEntidade(turmaFormacaoDTO);
+        List<TurmaFormacaoCompetenciaColaborador> lista = turmaFormacaoDTO.getTurmaFormacaoCompetenciasColaboradores()
+                .stream().map(t -> {
+                    t.setTurmaFormacaoId(turmaFormacao.getId());
+                    return turmaFormacaoCompetenciaColaboradorMapper.paraEntidade(t);
+                }).collect(Collectors.toList());
+        turmaFormacaoRepository.save(turmaFormacao);
+        turmaFormacaoCompetenciaColaboradorRepository.saveAll(lista);
     }
 
-    public void excluir(Integer id) {
-
-        try {
-            turmaFormacaoRepository.deleteById(id);
-        } catch (Exception e) {
-            throw new Exception("Não foi possível excluir a turma!");
-        }
+    public Optional<TurmaFormacao> buscarPorId(Integer id) {
+        return turmaFormacaoRepository.findById(id);
     }
 
 }

@@ -20,13 +20,11 @@ public class CategoriaService {
     public SelecionaDTO buscar(Integer id) {
         Categoria categoria = categoriaRepository.findById(id)
                 .orElseThrow(() -> new Exception("Categoria não encontrada!"));
-
         return categoriaMapper.paraDTO(categoria);
     }
 
     public List<SelecionaDTO> buscarTodas() {
-        List<Categoria> listaCategorias = categoriaRepository.findAll();
-
-        return categoriaMapper.listaParaDTOs(listaCategorias);
+        List<Categoria> lista = categoriaRepository.findAll();
+        return categoriaMapper.listaParaDTOs(lista);
     }
 }

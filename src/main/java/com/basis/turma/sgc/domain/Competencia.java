@@ -17,20 +17,17 @@ public class Competencia implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_competencia")
     @SequenceGenerator(name = "seq_competencia", allocationSize = 1, sequenceName = "seq_competencia")
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Column(name = "nome")
+    @Column(name = "nome", nullable = false, length = 50)
     private String nome;
 
-    @Column(name = "descricao")
+    @Column(name = "descricao", nullable = false)
     private String descricao;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_categoria", referencedColumnName = "id")
+    @JoinColumn(name = "id_categoria", referencedColumnName = "id", nullable = false)
     private Categoria categoria;
-
-    @OneToMany(mappedBy = "competencia", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<TurmaFormacaoCompetenciaColaborador>  turmaFormacaoCompetenciasColaboradores;
 
 }

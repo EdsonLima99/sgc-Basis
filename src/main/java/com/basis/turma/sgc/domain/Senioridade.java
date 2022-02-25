@@ -13,10 +13,10 @@ import java.io.Serializable;
 public class Senioridade implements Serializable {
 
     @Id
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Column(name = "descricao")
+    @Column(name = "descricao", nullable = false , length = 10)
     private String descricao;
 
 }

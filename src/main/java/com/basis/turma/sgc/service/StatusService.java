@@ -19,20 +19,18 @@ import java.util.List;
 public class StatusService {
 
     private final StatusMapper statusMapper;
-    private final StatusRepository statusRepository;
     private final StatusListaMapper statusListaMapper;
+    private final StatusRepository statusRepository;
 
-    public SelecionaDTO buscarPorId(Integer id){
+    public SelecionaDTO buscar(Integer id){
         Status status = statusRepository.findById(id)
-                .orElseThrow(() -> new Exception("Turma não encontrada"));
-
+                .orElseThrow(() -> new Exception("Status não encontrado!"));
         return statusMapper.paraDTO(status);
     }
 
-    public List<SelecionaDTO> buscarTodas() {
-        List<Status> listaStatus= statusRepository.findAll();
-
-        return statusListaMapper.listaParaDTOs(listaStatus);
+    public List<SelecionaDTO> buscarTodos() {
+        List<Status> lista = statusRepository.findAll();
+        return statusListaMapper.listaParaDTOs(lista);
     }
 }
 

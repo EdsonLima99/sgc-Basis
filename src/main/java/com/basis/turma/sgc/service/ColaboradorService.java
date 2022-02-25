@@ -4,7 +4,9 @@ import com.basis.turma.sgc.domain.Colaborador;
 import com.basis.turma.sgc.domain.ColaboradorCompetencia;
 import com.basis.turma.sgc.repository.ColaboradorCompetenciaRepository;
 import com.basis.turma.sgc.repository.ColaboradorRepository;
+import com.basis.turma.sgc.service.dto.SelecionaDTO;
 import com.basis.turma.sgc.service.dto.colaborador.ColaboradorDTO;
+import com.basis.turma.sgc.service.dto.colaborador.ColaboradorIdNomeListaDTO;
 import com.basis.turma.sgc.service.dto.colaborador.ColaboradorListaDTO;
 import com.basis.turma.sgc.service.exception.regra.Exception;
 import com.basis.turma.sgc.service.mapper.colabcomp.ColaborarCompetenciaMapper;
@@ -13,9 +15,8 @@ import com.basis.turma.sgc.service.mapper.colaborador.ColaboradorMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -23,102 +24,82 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class ColaboradorService {
 
-    private final ColaboradorRepository colaboradorRepository;
     private final ColaboradorMapper colaboradorMapper;
-    private final ColaboradorListaMapper colaboradorListaMapper;
     private final ColaborarCompetenciaMapper colaborarCompetenciaMapper;
+    private final ColaboradorListaMapper colaboradorListaMapper;
+    private final ColaboradorRepository colaboradorRepository;
     private final ColaboradorCompetenciaRepository colaboradorCompetenciaRepository;
 
     public ColaboradorListaDTO buscar(Integer id) {
-
-        Colaborador colaborador = colaboradorRepository.findById(id)
-                .orElseThrow(() -> new Exception("Colaborador não encontrado!"));
-
-        return colaboradorListaMapper.paraDTO(colaborador);
+        Optional<Colaborador> colaboradorOptional = buscarPorId(id);
+        if(!colaboradorOptional.isPresent()) {
+            throw new Exception("Colaborador não encontrado!");
+        }
+        return colaboradorListaMapper.paraDTO(colaboradorOptional.get());
     }
 
-    public List<ColaboradorListaDTO> buscarTodas() {
-
-        List<Colaborador> listaColaborador = colaboradorRepository.findAll();
-
-        return colaboradorListaMapper.listaParaDTOs(listaColaborador);
+    public List<ColaboradorListaDTO> buscarTodos() {
+        List<Colaborador> lista = colaboradorRepository.findAll();
+        return colaboradorListaMapper.listaParaDTOs(lista);
     }
 
     public void inserir(ColaboradorDTO colaboradorDTO) {
-
-        if(verificarEmailDuplicado(colaboradorDTO.getEmail())) {
-            throw new Exception("Email já cadastrado!");
+        if(verificarCpfDuplicado(colaboradorDTO.getCpf())) {
+            throw new Exception("Cpf já cadastrado no sistema!");
         }
 
-        if(verificarCpfDuplicado(colaboradorDTO.getCpf())) {
-            throw new Exception("CPF já cadastrado!");
+        if(verificarEmailDuplicado(colaboradorDTO.getEmail())) {
+            throw new Exception("Email já cadastrado no sistema!");
         }
 
         Colaborador colaborador = colaboradorMapper.paraEntidade(colaboradorDTO);
-        colaborador.setColaboradorCompetencias(new ArrayList<>());
-
         colaborador = colaboradorRepository.save(colaborador);
-
-        for (int i = 0; i < colaboradorDTO.getColaboradorCompetencias().size(); i++) {
-            colaboradorDTO.getColaboradorCompetencias().get(i).setColaboradorId(colaborador.getId());
-            ColaboradorCompetencia colaboradorCompetencia = colaborarCompetenciaMapper.paraEntidade(colaboradorDTO.getColaboradorCompetencias().get(i));
-            colaborador.getColaboradorCompetencias().add(colaboradorCompetencia);
-        }
-
-        colaboradorRepository.save(colaborador);
+        int colaboradorId = colaborador.getId();
+        List<ColaboradorCompetencia> lista = colaboradorDTO.getColaboradorCompetencias().stream().map( c -> {
+            c.setColaboradorId(colaboradorId);
+            return colaborarCompetenciaMapper.paraEntidade(c);
+        }).collect(Collectors.toList());
+        colaboradorCompetenciaRepository.saveAll(lista);
     }
 
     public void atualizar(ColaboradorDTO colaboradorDTO, Integer id) {
-
-        if(verificarEmailDuplicado(colaboradorDTO.getEmail())) {
-            throw new Exception("Email já cadastrado!");
+        Optional<Colaborador> colaboradorOptional = buscarPorId(id);
+        if(!colaboradorOptional.isPresent()) {
+            throw new Exception("Colaborador não encontrado!");
         }
-
-        Colaborador colaborador = colaboradorRepository.findById(id)
-                .orElseThrow(() -> new Exception("Colaborador não encontrado!"));
-
-        Colaborador colab = colaboradorMapper.paraEntidade(colaboradorDTO);
-
-        colaborador.setNome(colab.getNome());
-        colaborador.setSobrenome(colab.getSobrenome());
-        colaborador.setCpf(colab.getCpf());
-        colaborador.setEmail(colab.getEmail());
-        colaborador.setFoto(colab.getFoto());
-        colaborador.setDataNascimento(colab.getDataNascimento());
-        colaborador.setDataAdmissao(colab.getDataAdmissao());
-        colaborador.setSenioridade(colab.getSenioridade());
-
+        colaboradorDTO.setId(id);
+        Colaborador colaborador = colaboradorMapper.paraEntidade(colaboradorDTO);
+        List<ColaboradorCompetencia> lista = colaboradorDTO.getColaboradorCompetencias().stream().map( c -> {
+            c.setColaboradorId(colaborador.getId());
+            return colaborarCompetenciaMapper.paraEntidade(c);
+        }).collect(Collectors.toList());
         colaboradorRepository.save(colaborador);
-
-        List<Integer> listaCompetenciaIds = colaboradorDTO.getColaboradorCompetencias().stream().map( idComp -> idComp.getCompetenciaId()).collect(Collectors.toList());
-
-        List<ColaboradorCompetencia> listaColaboradorCompetencia = colaboradorCompetenciaRepository.findByColaboradorIdAndCompetenciaIdIn(id, listaCompetenciaIds);
-
-        for (int i = 0; i < colaboradorDTO.getColaboradorCompetencias().size(); i++) {
-            listaColaboradorCompetencia.get(i).setSenioridade(colaboradorDTO.getColaboradorCompetencias().get(i).getSenioridade());
-        }
-
-        colaboradorCompetenciaRepository.saveAll(listaColaboradorCompetencia);
+        colaboradorCompetenciaRepository.saveAll(lista);
     }
 
-    public void excluir(Integer id) {
+    public Optional<Colaborador> buscarPorId(Integer id) {
+        return colaboradorRepository.findById(id);
+    }
 
-        try {
-            colaboradorRepository.deleteById(id);
-        } catch (Exception e) {
-            throw new Exception("Não foi possível excluir o colaborador!");
-        }
+    public List<ColaboradorIdNomeListaDTO> buscarColaboradoresCompetencia(Integer competenciaId) {
+        List<ColaboradorCompetencia> lista = colaboradorCompetenciaRepository.findByCompetenciaIdAndSenioridade(competenciaId, 3);
+        List<ColaboradorIdNomeListaDTO> listaDTO = lista.stream().map( c -> {
+            ColaboradorIdNomeListaDTO dto = new ColaboradorIdNomeListaDTO();
+            dto.setId(c.getColaborador().getId());
+            dto.setNomeSobrenome(c.getColaborador().getNome() + " " + c.getColaborador().getSobrenome());
+            return dto;
+        }).collect(Collectors.toList());
+
+        return listaDTO;
     }
 
     public boolean verificarEmailDuplicado(String email) {
-
         Colaborador colaborador = colaboradorRepository.findByEmail(email);
-        return !(null == colaborador);
+        return null != colaborador;
     }
 
     public boolean verificarCpfDuplicado(String cpf) {
-
         Colaborador colaborador = colaboradorRepository.findByCpf(cpf);
-        return !(null == colaborador);
+        return null != colaborador;
     }
 }

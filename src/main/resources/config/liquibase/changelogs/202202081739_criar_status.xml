@@ -4,7 +4,7 @@
             <column name="id" type="integer">
                 <constraints nullable="false"/>
             </column>
-            <column name="descricao" type="varchar(255)">
+            <column name="descricao" type="varchar(9)">
                 <constraints nullable="false"/>
             </column>
         </createTable>
