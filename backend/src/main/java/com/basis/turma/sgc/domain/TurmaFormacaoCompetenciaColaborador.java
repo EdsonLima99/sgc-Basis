@@ -17,16 +17,16 @@ public class TurmaFormacaoCompetenciaColaborador implements Serializable {
 
         @ManyToOne(fetch = FetchType.LAZY)
         @MapsId("colaboradorId")
-        @JoinColumn(name = "id_colaborador")
+        @JoinColumn(name = "id_colaborador", nullable = false)
         private Colaborador colaborador;
 
         @ManyToOne(fetch = FetchType.LAZY)
         @MapsId("competenciaId")
-        @JoinColumn(name = "id_competencia")
+        @JoinColumn(name = "id_competencia", nullable = false)
         private Competencia competencia;
 
         @ManyToOne(fetch = FetchType.LAZY)
         @MapsId("turmaFormacaoId")
-        @JoinColumn(name = "id_turma_formacao")
+        @JoinColumn(name = "id_turma_formacao", nullable = false)
         private TurmaFormacao turmaFormacao;
 }

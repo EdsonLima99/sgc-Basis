@@ -18,40 +18,37 @@ public class Colaborador implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_colaborador")
     @SequenceGenerator(name = "seq_colaborador", allocationSize = 1, sequenceName = "seq_colaborador")
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Column(name = "nome")
+    @Column(name = "nome", nullable = false, length = 50)
     private String nome;
 
-    @Column(name = "sobrenome")
+    @Column(name = "sobrenome", nullable = false)
     private String sobrenome;
 
-    @Column(name = "cpf")
+    @Column(name = "cpf",  unique = true, nullable = false, length = 11)
     private String cpf;
 
-    @Column(name = "email")
+    @Column(name = "email", unique = true, nullable = false)
     private String email;
 
     @Lob
     @Column(name = "foto")
     private byte[] foto;
 
-    @Column(name = "dt_nascimento")
+    @Column(name = "dt_nascimento", nullable = false)
     private LocalDate dataNascimento;
 
-    @Column(name = "dt_admissao")
+    @Column(name = "dt_admissao", nullable = false)
     private LocalDate dataAdmissao;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_senioridade", referencedColumnName = "id")
+    @JoinColumn(name = "id_senioridade", referencedColumnName = "id", nullable = false)
     private Senioridade senioridade;
 
-    @OneToMany(mappedBy = "colaborador", fetch = FetchType.LAZY , cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "colaborador", fetch = FetchType.LAZY)
     private List<ColaboradorCompetencia> colaboradorCompetencias;
-
-    @OneToMany(mappedBy = "colaborador", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<TurmaFormacaoCompetenciaColaborador> turmaFormacaoCompetenciasColaboradores;
 }
 
 

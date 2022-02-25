@@ -1,3 +1,4 @@
+import { ColaboradorService } from './modules/colaborador/service/colaborador.service';
 import { CompetenciaService } from './modules/competencia/service/competencia.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -41,7 +42,7 @@ import { BlockUIModule } from 'ng-block-ui';
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },
-        CompetenciaService
+        CompetenciaService, ColaboradorService
     ],
     bootstrap: [AppComponent]
 })

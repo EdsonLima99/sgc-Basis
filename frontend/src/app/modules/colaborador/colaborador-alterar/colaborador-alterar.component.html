@@ -1,0 +1,63 @@
+<div class="p-mb-4">
+    <h1 class="h2 border-left pl-2">Alterar dados do Colaborador</h1>
+</div>
+
+<br>
+
+<form>
+    <div class="p-fluid p-formgrid p-grid">
+        <div class="p-field p-col" style="text-align: right">
+            <label for="foto">Foto: </label>
+            <input id="foto" type="file" pInputText />
+        </div>
+        <div class="p-field p-col">
+            <label for="nome">Nome: </label>
+            <input id="nome" type="text" pInputText />
+        </div>
+        <div class="p-field p-col">
+            <label for="sobrenome">Sobrenome: </label>
+            <input id="sobrenome" type="text" pInputText />
+        </div>
+        <div class="p-field p-col">
+            <label for="email">E-mail: </label>
+            <input id="email" type="email" pInputText />
+        </div>
+        <div class="p-field p-col">
+            <label for="dataNascimento">Data de Nascimento: </label>
+            <input id="dataNascimento" type="date" />
+        </div>
+        <div class="p-field p-col">
+            <label for="dataAdmissao">Data de Admissão: </label>
+            <input id="dataAdmissao" type="date" pInputText />
+        </div>
+        <div class="p-field p-col">
+            <label for="senioridade">Senioridade: </label>
+            <p-dropdown
+                [options]="senioridade"
+                [(ngModel)]="selecionarSenioridade"
+            ></p-dropdown>
+        </div>
+        <div class="p-field p-col"></div>
+
+        <br>
+
+        <div class="p-flex justify-content-end mt-2">
+            <button
+                type="submit"
+                pButton
+                icon="ui ui-icon-save"
+                (click)="Salvar()"
+                label="Salvar"
+                class="ui-button-success"
+            ></button>
+                <button
+                    type="button"
+                    pButton
+                    icon="pi pi-times"
+                    (click)="Cancelar()"
+                    label="Cancelar"
+                    class="ui-button-danger"
+                ></button>
+        </div>
+    </div>
+</form>

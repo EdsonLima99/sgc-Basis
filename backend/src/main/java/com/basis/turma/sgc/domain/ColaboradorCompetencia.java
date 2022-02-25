@@ -17,15 +17,15 @@ public class ColaboradorCompetencia implements Serializable {
 
         @ManyToOne(fetch = FetchType.LAZY)
         @MapsId("colaboradorId")
-        @JoinColumn(name = "id_colaborador")
+        @JoinColumn(name = "id_colaborador", nullable = false)
         private Colaborador colaborador;
 
         @ManyToOne(fetch = FetchType.LAZY)
         @MapsId("competenciaId")
-        @JoinColumn(name = "id_competencia")
+        @JoinColumn(name = "id_competencia", nullable = false)
         private Competencia competencia;
 
-        @Column(name = "senioridade")
+        @Column(name = "senioridade", nullable = false)
         private Integer senioridade;
 
 }

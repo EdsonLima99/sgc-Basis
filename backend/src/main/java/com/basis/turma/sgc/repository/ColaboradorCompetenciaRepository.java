@@ -16,7 +16,9 @@ public interface ColaboradorCompetenciaRepository extends JpaRepository<Colabora
     @Query("select cc.competencia.id from ColaboradorCompetencia cc where cc.colaborador.id = :id")
     List<Integer> buscarPorColaborador(@Param("id") Integer id);
 
-    List<ColaboradorCompetencia>  findByColaboradorIdAndCompetenciaIdIn(Integer colaboradorId, List<Integer> competenciaId);
+    ColaboradorCompetencia  findByColaboradorIdAndCompetenciaId(Integer colaboradorId, Integer competenciaId);
+
+    //List<ColaboradorCompetencia>  findByColaboradorIdAndCompetenciaIdIn(Integer colaboradorId, List<Integer> competenciaId);
 
 //    @Query("select tfcc.turmaformacao.id from TurmaFormacaoColaboradorCompetencia tfcc, TurmaFormacao tf where tf.datainicio = :datainicio")
 //    List<Integer> buscarTurmaFormacaoPorDataInicio(@Param("datainicio") LocalDate datainicio);
