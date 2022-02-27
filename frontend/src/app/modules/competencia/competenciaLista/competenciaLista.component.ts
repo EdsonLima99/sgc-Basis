@@ -1,6 +1,6 @@
 import { CompetenciaService } from './../service/competencia.service';
 import { CompetenciaModel } from './../models/competencia.models';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-competenciaLista',
@@ -9,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompetenciaListaComponent implements OnInit {
 
+    public COLUNA_CATEGORIA: string = "Categoria";
+    public CAMPO_CATEGORIA: string = "descricao";
+
     competencias: CompetenciaModel[];
+    compEdit: CompetenciaModel;
 
     scrollableCols: any[];
+
+    displayModal: boolean = false;
+
+
+    // @Input() refreshGrid : boolean = false;
 
   constructor(
       private listaCompetenciaService: CompetenciaService
@@ -20,10 +29,11 @@ export class CompetenciaListaComponent implements OnInit {
   ngOnInit() {
     this.listarCompetencia()
 
+
     this.scrollableCols = [
         { field: 'nome', header: 'Nome' },
         { field: 'descricao', header: 'Descrição' },
-        { field: 'categoriaId', header: 'Categoria' },
+        { field: this.CAMPO_CATEGORIA, header: this.COLUNA_CATEGORIA },
     ];
   }
 
@@ -34,4 +44,33 @@ export class CompetenciaListaComponent implements OnInit {
         console.log("Erro.", error)
     })
   }
+
+
+//   ngOnChanges(){
+//     if(this.refreshGrid){
+//       this.listarCompetencia();
+//     }
+//   }
+
+  showDialog() {
+    this.displayModal = true;
+  }
+
+//   atualizarLista($event:any){
+//     this.refreshGrid = true;
+//   }
+
+  public deletarCompetencia(id: number){
+    this.listaCompetenciaService.deletarCompetencia(id).subscribe()
+    alert("Competência deletada.")
+}
+
+    public editarCompetencia(competencia: CompetenciaModel){
+      this.compEdit = competencia;
+      this.showDialog();
+      console.log(this.compEdit)
+
+        // this.listaCompetenciaService.editarCompetencia(id).subscribe()
+    }
+
 }

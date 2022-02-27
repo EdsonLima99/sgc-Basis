@@ -51,7 +51,7 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
 
         this.menuService.itens = [
             { label: 'Dashboard', icon: 'dashboard', routerLink: ['/'] },
-            { label: 'Competencia', icon: 'dashboard', routerLink: ['/competencia'] }
+            { label: 'Competencia', icon: 'dashboard', routerLink: ['/competencias'] }
 
         ];
     }

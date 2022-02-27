@@ -7,7 +7,7 @@ import { DatatableModule } from '@nuvem/primeng-components';
     imports: [
         PRIMENG_IMPORTS,
         TableModule,
-        DatatableModule,
+        DatatableModule
 
     ],
     providers: [],

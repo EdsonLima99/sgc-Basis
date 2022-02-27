@@ -1,3 +1,35 @@
-<p>
-  competenciaForm works!
-</p>
+<div class="p-mb-4">
+    <h1 class="h2 border-left pl-2" style="text-align: center">Criar/Editar Competência</h1>
+</div>
+<form [formGroup]="formulario">
+
+    <div class="form-group">
+        <div class="field col-12 md-10">
+            <label for="nome">Nome:</label>
+            <input type="text" class="inputfield w-full" id="nome" formControlName="nome">
+        </div><br>
+        <div class="field col-12 md-10">
+            <label for="descricao">Descrição:</label>
+            <input type="textarea" class="inputfield w-full" id="descricao" formControlName="descricao">
+        </div><br>
+        <div>
+            <label for="categorias">Categoria:</label>
+            <p-dropdown formControlName="categoriaId" appendTo = "body"
+            [options]="converterDropdown(categorias, 'id', 'descricao')"
+            placeholder="Selecione uma categoria" [showClear]="true">
+            </p-dropdown>
+        </div><br>
+        <div style="text-align: center">
+            <button type="submit" pButton icon="ui ui-icon-save" (click)="salvarCompetencia()" label="Salvar"
+                class="ui-button-success"></button>
+            <button type="button" pButton icon="pi pi-times" (click)="Cancelar()" label="Cancelar"
+                class="ui-button-danger"></button>
+        </div><br>
+    </div>
+</form>
+
+
+
+
+
+

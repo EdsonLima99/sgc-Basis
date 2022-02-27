@@ -37,6 +37,6 @@ public class TurmaFormacao implements Serializable {
     @JoinColumn(name = "id_status")
     private Status status;
 
-    @OneToMany(mappedBy = "turmaFormacao", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "turmaFormacao", fetch = FetchType.LAZY)
     private List<TurmaFormacaoCompetenciaColaborador> turmaFormacaoCompetenciasColaboradores;
 }

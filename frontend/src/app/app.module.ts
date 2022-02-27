@@ -1,3 +1,5 @@
+import { CategoriaService } from './modules/competencia/service/categoria.service';
+import { CompetenciaModule } from './modules/competencia/competencia.module';
 import { CompetenciaService } from './modules/competencia/service/competencia.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -14,6 +16,9 @@ import { PageNotificationModule, BreadcrumbModule, MenuModule, ErrorStackModule 
 import { ErrorModule, SecurityModule, VersionTagModule } from '@nuvem/angular-base';
 import { DiarioErrosComponent } from './components/diario-erros/diario-erros.component';
 import { BlockUIModule } from 'ng-block-ui';
+import { ButtonModule } from 'primeng/button';
+import { DialogModule } from "primeng/dialog";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [
@@ -37,11 +42,14 @@ import { BlockUIModule } from 'ng-block-ui';
         ErrorModule,
         VersionTagModule,
         SecurityModule.forRoot(environment.auth),
-        MenuModule
+        MenuModule,
+        ButtonModule,
+        DialogModule,
+        FormsModule,
+        ReactiveFormsModule
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },
-        CompetenciaService
     ],
     bootstrap: [AppComponent]
 })

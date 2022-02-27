@@ -30,7 +30,7 @@ public class Competencia implements Serializable {
     @JoinColumn(name = "id_categoria", referencedColumnName = "id")
     private Categoria categoria;
 
-    @OneToMany(mappedBy = "competencia", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<TurmaFormacaoCompetenciaColaborador>  turmaFormacaoCompetenciasColaboradores;
+//    @OneToMany(mappedBy = "competencia", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<TurmaFormacaoCompetenciaColaborador>  turmaFormacaoCompetenciasColaboradores;
 
 }
