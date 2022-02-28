@@ -19,9 +19,6 @@ export class CompetenciaListaComponent implements OnInit {
 
     displayModal: boolean = false;
 
-
-    // @Input() refreshGrid : boolean = false;
-
   constructor(
       private listaCompetenciaService: CompetenciaService
   ) { }
@@ -36,10 +33,6 @@ export class CompetenciaListaComponent implements OnInit {
     ];
   }
 
-  atualizarLista(evento) {
-    this.listarCompetencia();
-}
-
   listarCompetencia(){
     this.listaCompetenciaService.listarCompetencias().subscribe((data)=>{
         this.competencias = data;
@@ -48,33 +41,21 @@ export class CompetenciaListaComponent implements OnInit {
     })
   }
 
-
-//   ngOnChanges(){
-//     if(this.refreshGrid){
-//       this.listarCompetencia();
-//     }
-//   }
-
   showDialog() {
+    this.compEdit = new CompetenciaModel()
     this.displayModal = true;
   }
-
-//   atualizarLista($event:any){
-//     this.refreshGrid = true;
-//   }
 
   public deletarCompetencia(id: number){
     this.listaCompetenciaService.deletarCompetencia(id).subscribe()
     alert("Competência deletada.")
+    this.listarCompetencia()
 }
 
     public editarCompetencia(competencia: CompetenciaModel){
       this.compEdit = competencia;
       console.log(this.compEdit)
       this.showDialog();
-
-
-        // this.listaCompetenciaService.editarCompetencia(id).subscribe()
     }
 
     public fecharModal(){

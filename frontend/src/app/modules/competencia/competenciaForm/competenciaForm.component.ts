@@ -6,7 +6,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import { SelectItem } from 'primeng';
 import { CompetenciaModel } from '../models/competencia.models';
-// import { EventEmitter } from 'protractor';
+
 
 @Component({
   selector: 'app-competenciaForm',
@@ -59,7 +59,6 @@ export class CompetenciaFormComponent implements OnInit {
         this.competenciaService.inserirCompetencia(this.formulario.getRawValue()).subscribe(() => {
             this.fecharModal()
         })
-        // this.atualizarLista.emit("atualizar")
     }
 
     public fecharModal(){

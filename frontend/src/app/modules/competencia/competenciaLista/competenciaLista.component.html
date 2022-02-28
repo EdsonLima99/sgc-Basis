@@ -9,12 +9,12 @@
     [draggable]="false"
     [resizable]="false"
     [closable]="false">
-    <!-- [refreshGrid]="refreshGrid" -->
+
     <app-competenciaForm
+
     *ngIf = "compEdit"
     [compEdit]="compEdit"
     (aoFechar)="fecharModal()"
-
 
     ></app-competenciaForm>
 </p-dialog>
