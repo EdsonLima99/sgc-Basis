@@ -61,6 +61,20 @@ export class CompetenciaFormComponent implements OnInit {
         })
     }
 
+    public editarCompetencia(){
+        this.competenciaService.editarCompetencia(this.formulario.get('id').value, this.formulario.getRawValue()).subscribe(() => {
+            this.fecharModal()
+        })
+    }
+
+    verificarId() {
+        if (!this.formulario.get("id").value) {
+            this.salvarCompetencia();
+            return;
+        }
+        this.editarCompetencia();
+    }
+
     public fecharModal(){
         this.aoFechar.emit()
     }

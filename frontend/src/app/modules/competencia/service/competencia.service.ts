@@ -21,8 +21,8 @@ export class CompetenciaService {
        return this.http.post<CompetenciaModel>(this.UrlService + "/competencias", competencia)
    }
 
-   public editarCompetencia(competencia: CompetenciaModel): Observable<CompetenciaModel>{
-       return this.http.put<CompetenciaModel>(this.UrlService + "/competencias", competencia)
+   public editarCompetencia(id:number, competencia: CompetenciaModel): Observable<CompetenciaModel>{
+       return this.http.put<CompetenciaModel>(this.UrlService + "/competencias/" + id, competencia)
 }
 
    public deletarCompetencia(id: number):Observable<CompetenciaModel>{
