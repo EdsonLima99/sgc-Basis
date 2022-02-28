@@ -26,11 +26,11 @@ public class ColaboradorDTO implements Serializable {
     private String sobrenome;
 
     @NotBlank(message = "Cpf é obrigatório!")
-    @CPF(message = "Cpf em formato inválido!")
+    //@CPF(message = "Cpf em formato inválido!")
     private String cpf;
 
     @NotBlank(message = "Email é obrigatório!")
-    @Email(message = "Email em formato inválido!")
+    //@Email(message = "Email em formato inválido!")
     private String email;
 
     private byte[] foto;

@@ -2,9 +2,9 @@ package com.basis.turma.sgc.service;
 
 import com.basis.turma.sgc.domain.Colaborador;
 import com.basis.turma.sgc.domain.ColaboradorCompetencia;
-import com.basis.turma.sgc.domain.Competencia;
 import com.basis.turma.sgc.repository.ColaboradorCompetenciaRepository;
 import com.basis.turma.sgc.repository.ColaboradorRepository;
+import com.basis.turma.sgc.service.dto.SelecionaDTO;
 import com.basis.turma.sgc.service.dto.colaborador.ColaboradorDTO;
 import com.basis.turma.sgc.service.dto.colaborador.ColaboradorListaDTO;
 import com.basis.turma.sgc.service.exception.regra.Exception;
@@ -78,6 +78,26 @@ public class ColaboradorService {
 
     public Optional<Colaborador> buscarPorId(Integer id) {
         return colaboradorRepository.findById(id);
+    }
+
+//    public List<SelecionaDTO> buscarColaboradoresCompetencia(Integer competenciaId) {
+//        List<ColaboradorCompetencia> lista = colaboradorCompetenciaRepository.findByCompetenciaIdAndSenioridade(competenciaId, 3);
+//        List<SelecionaDTO> listaDTO = lista.stream().map( c -> {
+//            SelecionaDTO dto = new SelecionaDTO();
+//            dto.setId(c.getColaborador().getId());
+//            dto.setDescricao(c.getColaborador().getNome() + " " + c.getColaborador().getSobrenome());
+//            return dto;
+//        }).collect(Collectors.toList());
+//
+//        return listaDTO;
+//    }
+
+    public List<ColaboradorListaDTO> buscarColaboradoresCompetencia(Integer competenciaId) {
+        List<ColaboradorCompetencia> lista = colaboradorCompetenciaRepository.findByCompetenciaIdAndSenioridade(competenciaId, 3);
+        List<Integer> listaIdsColaboradores = lista.stream().map( cc -> cc.getColaborador().getId()).collect(Collectors.toList());
+        List<Colaborador> listaColab = colaboradorRepository.findByIdIn(listaIdsColaboradores);
+
+        return colaboradorListaMapper.listaParaDTOs(listaColab);
     }
 
     public boolean verificarEmailDuplicado(String email) {

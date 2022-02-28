@@ -1,0 +1,74 @@
+
+<!-- [(visible)]="displayModal"
+[modal] = "true"
+[style]= "{width: '30vw'}"
+[baseZIndex]="10000" -->
+
+<div class="p-mb-4">
+    <h1 class="h2 border-left pl-2" style="text-align: center">Criar Turma de Formação</h1>
+</div>
+
+<form [formGroup]="formulario" [style]= "{width: '50vw'}">
+
+    <div class="form-group">
+        <div class="field col-12 md-10">
+            <label for="foto">Nome:</label>
+            <input type="text" class="inputfield w-full" id="nome" formControlName="nome">
+        </div>
+        <div class="field col-12 md-10">
+            <label for="foto">Descricao:</label>
+            <input type="text" class="inputfield w-full" id="decricao" formControlName="descricao">
+        </div>
+        <div class="field col-12 md-10">
+            <label for="dataNascimento">Data de Início:</label>
+            <input type="date" class="inputfield w-full" id="dataInicio" formControlName="dataInicio">
+        </div>
+        <div class="field col-12 md-10">
+            <label for="dataNascimento">Data de Término:</label>
+            <input type="date" class="inputfield w-full" id="dataInicio" formControlName="dataTermino">
+        </div>
+    </div>
+    <div>
+        <label for="status">Status: </label>
+        <p-dropdown
+        appendTo="body"
+        formControlName="statusId"
+        [options]="converterDropdown(status, 'id', 'descricao')" placeholder="Selecione"
+        [showClear]="true">
+        </p-dropdown>
+    </div><br>
+</form>
+
+<div>
+    <label for="competencias">Competencias: </label>
+    <p-dropdown
+        appendTo="body"
+        [(ngModel)]="competenciaSelecionada"
+        (ngModelChange)="listarColaboradoresCompetencia()"
+        [options]="converterDropdown(competencias, null, 'nome')"
+        placeholder="Selecione"
+        [showClear]="true">
+    </p-dropdown>
+</div><br>
+
+<div>
+    <label >Colaboradores: </label>
+    <p-dropdown
+        appendTo="body"
+        [(ngModel)]="colaboradorSelecionado"
+        [options]="converterDropdownColab(colaboradores, null, 'nome', 'sobrenome')"
+        placeholder="Selecione"
+        [showClear]="true">
+    </p-dropdown>
+</div><br>
+
+<button type="button" (click)="incluirCompetenciaTurma()" pButton icon="pi pi-plus" label="Novo" class="ui-button-success"></button>
+
+<div *ngFor="let competencia of obterListaCompetencias()">
+    {{gerarNomeCompetencia(competencia)}}
+</div>
+
+<button type="button" (click)="inserir()" pButton icon="pi pi-plus" label="Submit" class="ui-button-success"></button>
+
+
+

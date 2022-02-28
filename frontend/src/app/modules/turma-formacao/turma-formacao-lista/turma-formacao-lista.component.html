@@ -1,0 +1,45 @@
+<h1 style="text-align: center">Turmas de Formação</h1>
+<div style="text-align: right">
+    <button type="button" (click)="showDialog()" pButton icon="pi pi-plus" label="Novo" class="ui-button-success"></button>
+</div>
+<br />
+<p-dialog [(visible)]="displayModal" header = "Criar Turma Formação"
+    [(visible)]="displayModal"
+    [draggable]="false"
+    [resizable]="false">
+    <app-turma-formacao-form>
+
+    </app-turma-formacao-form>
+</p-dialog>
+<p-table [columns]="scrollableCols" [value]="turmas">
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th *ngFor="let col of columns">
+                {{ col.header }}
+            </th>
+            <th>Ações</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr>
+            <td>
+                <ng-container>{{ rowData.nome }}</ng-container>
+            </td>
+            <td>
+                <ng-container>{{ rowData.dataInicio | date:'dd/MM/yyyy' }}</ng-container>
+            </td>
+            <td>
+                <ng-container>{{ rowData.dataTermino | date:'dd/MM/yyyy' }}</ng-container>
+            </td>
+            <td>
+                <ng-container>{{ rowData.status[CAMPO_STATUS] }}</ng-container>
+            </td>
+            <td style="text-align: center">
+                <button type="button" [routerLink]="['alterar', '1']" pButton icon="ui ui-icon-pencil" label="Editar"
+                    class="ui-button-info"></button>
+                <button type="button" (click)="excluir(rowData.id)"  pButton icon="ui ui-icon-trash" label="Excluir" class="ui-button-danger"></button>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+

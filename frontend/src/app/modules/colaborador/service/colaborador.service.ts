@@ -1,3 +1,4 @@
+import { SelecionaModel } from './../../seleciona/models/seleciona.models';
 import { catchError } from 'rxjs/operators';
 import { ColaboradorModel } from './../models/colaborador.model';
 import { Observable, throwError } from 'rxjs';
@@ -21,6 +22,13 @@ export class ColaboradorService {
 
   public buscar(id: number): Observable<ColaboradorModel> {
     return this.http.get<ColaboradorModel>(`${this.UrlService}/colaboradores/${id}`).pipe(
+      map(this.jsonDataToResource.bind(this)),
+      catchError(this.handleError)
+    )
+  }
+
+  public buscarColaboradoresCompetencia(id: number): Observable<ColaboradorModel[]> {
+    return this.http.get<ColaboradorModel>(`${this.UrlService}/colaboradores/competencia/${id}`).pipe(
       map(this.jsonDataToResource.bind(this)),
       catchError(this.handleError)
     )

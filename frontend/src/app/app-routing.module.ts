@@ -1,3 +1,5 @@
+import { TurmaFormacaoModule } from './modules/turma-formacao/turma-formacao.module';
+import { TurmaFormacaoModel } from './modules/turma-formacao/models/turma_formacao.model';
 import { ColaboradorModule } from './modules/colaborador/colaborador.module';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -11,6 +13,7 @@ const routes: Routes = [
     { path: 'login-success', component: LoginSuccessComponent },
     { path: 'competencia', loadChildren: () => CompetenciaModule },
     { path: 'colaboradores', loadChildren: () => ColaboradorModule },
+    { path: 'turmas_formacao', loadChildren: () => TurmaFormacaoModule },
     { path: '', redirectTo: 'colaboradores', pathMatch: 'full'}
 ];
 

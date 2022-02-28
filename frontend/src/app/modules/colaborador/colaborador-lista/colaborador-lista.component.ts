@@ -46,8 +46,7 @@ export class ColaboradorListaComponent implements OnInit {
 
     public buscarTodas(){
         this.colaboradorService.buscarTodas().subscribe(
-            (colaboradores) => (this.colaboradores = colaboradores),
-            (error) => alert("Error ao carregar a página")
+            (colaboradores) => (this.colaboradores = colaboradores)
         )
     }
 

@@ -3,6 +3,7 @@ package com.basis.turma.sgc.resource;
 import com.basis.turma.sgc.domain.Colaborador;
 import com.basis.turma.sgc.repository.ColaboradorRepository;
 import com.basis.turma.sgc.service.ColaboradorService;
+import com.basis.turma.sgc.service.dto.SelecionaDTO;
 import com.basis.turma.sgc.service.dto.colaborador.ColaboradorDTO;
 import com.basis.turma.sgc.service.dto.colaborador.ColaboradorListaDTO;
 import com.basis.turma.sgc.service.exception.regra.Exception;
@@ -32,6 +33,11 @@ public class ColaboradorResource {
     @GetMapping
     public ResponseEntity<List<ColaboradorListaDTO>> buscarTodos() {
         return new ResponseEntity<>(colaboradorService.buscarTodos(), HttpStatus.OK);
+    }
+
+    @GetMapping("/competencia/{competenciaId}")
+    public ResponseEntity<List<ColaboradorListaDTO>> buscarColaboradoresCompetencia(@PathVariable Integer competenciaId) {
+        return new ResponseEntity<>(colaboradorService.buscarColaboradoresCompetencia(competenciaId), HttpStatus.OK);
     }
 
     @PostMapping

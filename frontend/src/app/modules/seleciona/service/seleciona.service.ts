@@ -17,4 +17,8 @@ export class SelecionaService {
         return this.http.get<SelecionaModel[]>(this.UrlService + '/senioridades')
     }
 
+    public getStatus(): Observable<SelecionaModel[]>{
+        return this.http.get<SelecionaModel[]>(this.UrlService + '/status')
+    }
+
 }

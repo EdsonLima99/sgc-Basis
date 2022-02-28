@@ -29,11 +29,6 @@ public class CompetenciaResource {
         return new ResponseEntity<>(competenciaService.buscar(id), HttpStatus.OK);
     }
 
-    @GetMapping("/colaborador/{id}")
-    public ResponseEntity<CompetenciaListaDTO> buscarPorColaborador(@PathVariable Integer id) {
-        return new ResponseEntity<>(competenciaService.buscar(id), HttpStatus.OK);
-    }
-
     @GetMapping
     public ResponseEntity<List<CompetenciaListaDTO>> buscarTodas() {
         return new ResponseEntity<>(competenciaService.buscarTodas(), HttpStatus.OK);

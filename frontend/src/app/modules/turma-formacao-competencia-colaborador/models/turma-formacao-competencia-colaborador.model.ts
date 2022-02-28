@@ -1,5 +1,8 @@
 export class TurmaFormacaoCompetenciaColaboradorModel{
-    // turmaFormacaoId: number;
-    competenciaId: number;
-    colaboradorId: number;
+    constructor(
+        public turmaFormacaoId?: number,
+        public competenciaId?: number,
+        public colaboradorId?: number
+    ){}
+
 }

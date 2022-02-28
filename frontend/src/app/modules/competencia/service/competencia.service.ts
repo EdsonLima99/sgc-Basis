@@ -17,6 +17,9 @@ export class CompetenciaService {
        return this.http.get<CompetenciaModel[]>(this.UrlService + "/competencias")
    }
 
+    public buscarCompetencia(id: number): Observable<CompetenciaModel>{
+        return this.http.get<CompetenciaModel>(`${this.UrlService}/competencias/${id}`)
+    }
 
 
 

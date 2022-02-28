@@ -24,7 +24,6 @@ public class CompetenciaService {
     private final CompetenciaMapper competenciaMapper;
     private final CompetenciaListaMapper competenciaListaMapper;
     private final CompetenciaRepository competenciaRepository;
-    private final ColaboradorCompetenciaRepository colaboradorCompetenciaRepository;
 
     public CompetenciaListaDTO buscar(Integer id) {
         Optional<Competencia> competenciaOptional = buscarPorId(id);
@@ -32,10 +31,6 @@ public class CompetenciaService {
             throw new Exception("Competência não encontrada!");
         }
         return competenciaListaMapper.paraDTO(competenciaOptional.get());
-    }
-
-    public List<Integer> buscarPorColaborador(Integer id) {
-        return colaboradorCompetenciaRepository.buscarPorColaborador(id);
     }
 
     public List<CompetenciaListaDTO> buscarTodas() {
