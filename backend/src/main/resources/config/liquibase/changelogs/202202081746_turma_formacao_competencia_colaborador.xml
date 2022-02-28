@@ -1,0 +1,41 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet id="8" author="leonardo.inacio">
+        <createTable tableName="turma_formacao_competencia_colaborador">
+            <column name="id_turma_formacao" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id_competencia" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id_colaborador" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey tableName="turma_formacao_competencia_colaborador"
+                       columnNames="id_turma_formacao, id_competencia, id_colaborador"
+                       constraintName="pk_turma_formacao_competencia_colaborador"/>
+
+        <addForeignKeyConstraint
+                baseTableName="turma_formacao_competencia_colaborador"
+                baseColumnNames="id_turma_formacao"
+                referencedTableName="turma_formacao"
+                referencedColumnNames="id"
+                constraintName="fk_turma_formacao_competencia_colaborador_turma_formacao"
+        />
+        <addForeignKeyConstraint
+                baseTableName="turma_formacao_competencia_colaborador"
+                baseColumnNames="id_competencia"
+                referencedTableName="competencia"
+                referencedColumnNames="id"
+                constraintName="fk_turma_formacao_competencia_colaborador_competencia"
+        />
+        <addForeignKeyConstraint
+                baseTableName="turma_formacao_competencia_colaborador"
+                baseColumnNames="id_colaborador"
+                referencedTableName="colaborador"
+                referencedColumnNames="id"
+                constraintName="fk_colaborador_competencia_colaborador_colaborador"
+        />
+    </changeSet>
+</databaseChangeLog>
