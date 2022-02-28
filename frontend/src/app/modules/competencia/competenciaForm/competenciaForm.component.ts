@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { CategoriaService } from './../service/categoria.service';
 import { SelecionaModel } from './../../seleciona/models/seleciona.models';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { SelectItem } from 'primeng';
 import { CompetenciaModel } from '../models/competencia.models';
 
@@ -35,9 +35,9 @@ export class CompetenciaFormComponent implements OnInit {
     this.listarCategoria()
       this.formulario = this.formBuilder.group({
           id: [null],
-          nome: [''],
-          descricao: [''],
-          categoriaId:['']
+          nome: ['',[Validators.required]],
+          descricao: ['', [Validators.required]],
+          categoriaId:['', [Validators.required]]
       });
       if (!!this.compEdit){
           this.formulario.patchValue(this.compEdit)
