@@ -1,6 +1,8 @@
 package com.basis.turma.sgc.resource;
 
 import com.basis.turma.sgc.domain.TurmaFormacao;
+import com.basis.turma.sgc.domain.TurmaFormacaoCompetenciaColaborador;
+import com.basis.turma.sgc.repository.TurmaFormacaoCompetenciaColaboradorRepository;
 import com.basis.turma.sgc.repository.TurmaFormacaoRepository;
 import com.basis.turma.sgc.service.TurmaFormacaoService;
 import com.basis.turma.sgc.service.dto.turma.TurmaFormacaoDTO;
@@ -23,6 +25,7 @@ public class TurmaFormacaoResource {
 
     private final TurmaFormacaoService turmaFormacaoService;
     private final TurmaFormacaoRepository turmaFormacaoRepository;
+    private final TurmaFormacaoCompetenciaColaboradorRepository turmaFormacaoCompetenciaColaboradorRepository;
 
     @GetMapping("/{id}")
     public ResponseEntity<TurmaFormacaoListaDTO> buscar(@PathVariable Integer id){
@@ -48,16 +51,21 @@ public class TurmaFormacaoResource {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> excluir(@PathVariable Integer id){
-        Optional<TurmaFormacao> turmaFormacaoOptional = turmaFormacaoService.buscarPorId(id);
-        if(!turmaFormacaoOptional.isPresent()) {
-            throw new Exception("Turma não encontrada!");
-        }
-
-        try {
-            turmaFormacaoRepository.deleteById(id);
-        } catch (DataIntegrityViolationException e) {
-            throw new Exception("Não foi possível excluir a turma!");
-        }
+        turmaFormacaoService.excluir(id);
+//        Optional<TurmaFormacao> turmaFormacaoOptional = turmaFormacaoService.buscarPorId(id);
+//        if(!turmaFormacaoOptional.isPresent()) {
+//            throw new Exception("Turma não encontrada!");
+//        }
+//
+//        List<TurmaFormacaoCompetenciaColaborador> lista = turmaFormacaoCompetenciaColaboradorRepository.findByTurmaFormacaoId(id);
+//        turmaFormacaoCompetenciaColaboradorRepository.deleteAll(lista);
+//
+//
+//        try {
+//            turmaFormacaoRepository.deleteById(id);
+//        } catch (DataIntegrityViolationException e) {
+//            throw new Exception("Não foi possível excluir a turma!");
+//        }
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

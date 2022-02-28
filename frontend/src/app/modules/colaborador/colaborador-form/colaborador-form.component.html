@@ -46,11 +46,36 @@
                 [showClear]="true">
             </p-dropdown>
         </div><br>
-        <div style="text-align: center">
-            <button type="submit" pButton icon="ui ui-icon-save" (click)="Salvar()" label="Salvar"
-                class="ui-button-success"></button>
-            <button type="button" pButton icon="pi pi-times" (click)="Cancelar()" label="Cancelar"
-                class="ui-button-danger"></button>
-        </div>
     </div>
 </form>
+
+<div>
+    <label for="competencia">Competencia: </label>
+    <p-dropdown [(ngModel)] = "competenciaSelecionada" appendTo="body"
+        [options]="converterDropdown(competencia, null, 'nome')" placeholder="Selecione uma Competência"
+        [showClear]="true">
+    </p-dropdown>
+</div><br>
+<div>
+    <label for="nivel">Nível: </label>
+    <p-dropdown [(ngModel)]="nivelSelecionado" appendTo="body"
+        [options]="converterDropdown(senioridade, null, 'descricao')" placeholder="Selecione um Nível"
+        [showClear]="true">
+    </p-dropdown>
+</div><br>
+
+<div>
+    <button type="button" pButton icon="ui ui-icon-save" (click)="incluirColaboradorCompetencia()" label="Adicionar"
+        class="ui-button-success"></button>
+</div>
+
+<div *ngFor="let colaboradores of obterListaColaboradorCompetencias()">
+    {{gerarCompetenciasSenioridade(colaboradores)}}
+</div>
+
+<div style="text-align: center">
+    <button type="submit" pButton icon="ui ui-icon-save" (click)="Salvar()" label="Salvar"
+        class="ui-button-success"></button>
+    <button type="button" pButton icon="pi pi-times" (click)="Cancelar()" label="Cancelar"
+        class="ui-button-danger"></button>
+</div>

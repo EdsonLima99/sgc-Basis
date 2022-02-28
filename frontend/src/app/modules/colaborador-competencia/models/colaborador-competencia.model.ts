@@ -1,5 +1,7 @@
-export class ColaboradorCompetenciaModel{
-    // colaboradorId: number;
-    competenciaId: number;
-    senioridade: number;
+export class ColaboradorCompetenciaModel {
+    constructor(
+        public colaboradorId: number,
+        public competenciaId: number,
+        public senioridade: number
+        ) {}
 }

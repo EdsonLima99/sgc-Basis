@@ -2,6 +2,7 @@ package com.basis.turma.sgc.repository;
 
 import com.basis.turma.sgc.domain.ColaboradorCompetencia;
 import com.basis.turma.sgc.domain.ColaboradorCompetenciaPK;
+import com.basis.turma.sgc.service.dto.SelecionaDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -13,13 +14,9 @@ import java.util.List;
 @Repository
 public interface ColaboradorCompetenciaRepository extends JpaRepository<ColaboradorCompetencia, ColaboradorCompetenciaPK> {
 
-    @Query("select cc.competencia.id from ColaboradorCompetencia cc where cc.colaborador.id = :id")
-    List<Integer> buscarPorColaborador(@Param("id") Integer id);
-
     ColaboradorCompetencia  findByColaboradorIdAndCompetenciaId(Integer colaboradorId, Integer competenciaId);
 
-    //List<ColaboradorCompetencia>  findByColaboradorIdAndCompetenciaIdIn(Integer colaboradorId, List<Integer> competenciaId);
+    List<ColaboradorCompetencia> findByCompetenciaIdAndSenioridade(Integer competenciaId, Integer senioridade);
 
-//    @Query("select tfcc.turmaformacao.id from TurmaFormacaoColaboradorCompetencia tfcc, TurmaFormacao tf where tf.datainicio = :datainicio")
-//    List<Integer> buscarTurmaFormacaoPorDataInicio(@Param("datainicio") LocalDate datainicio);
+    List<ColaboradorCompetencia> findByColaboradorId(Integer colaboradorId);
 }

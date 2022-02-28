@@ -51,7 +51,7 @@ export class ColaboradorListaComponent implements OnInit {
         )
     }
 
-    public excluir(id: number){
+    excluir(id: number){
         this.colaboradorService.excluir(id).subscribe()
         alert("Colaborador excluído")
     }

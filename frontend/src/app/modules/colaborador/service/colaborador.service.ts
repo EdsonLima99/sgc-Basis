@@ -20,32 +20,32 @@ export class ColaboradorService {
    }
 
   public buscar(id: number): Observable<ColaboradorModel> {
-    return this.http.get<ColaboradorModel>(`${this.UrlService}/colaboradores/${id}`).pipe(
+    return this.http.get(`${this.UrlService}/${id}`).pipe(
       map(this.jsonDataToResource.bind(this)),
       catchError(this.handleError)
     )
   }
 
   public inserir(resource: ColaboradorModel): Observable<ColaboradorModel> {
-    return this.http.post<ColaboradorModel>(this.UrlService + '/colaboradores', resource).pipe(
+    return this.http.post(this.UrlService + '/colaboradores', resource).pipe(
       map(this.jsonDataToResource.bind(this)),
       catchError(this.handleError)
     )
   }
 
   public atualizar(resource: ColaboradorModel): Observable<ColaboradorModel> {
-    const url = `${this.UrlService}/colaboradores/${resource.id}`;
+    const url = `${this.UrlService}/${resource.id}`;
 
-    return this.http.put<ColaboradorModel>(url, resource).pipe(
+    return this.http.put(url, resource).pipe(
       map(() => resource),
       catchError(this.handleError)
     )
   }
 
-  public excluir(id: number): Observable<ColaboradorModel> {
-    const url = `${this.UrlService}/colaboradores/${id}`;
+  public excluir(id: number): Observable<any> {
+    const url = `${this.UrlService}/${id}`;
 
-    return this.http.delete<ColaboradorModel>(url).pipe(
+    return this.http.delete(url).pipe(
       map(() => null),
       catchError(this.handleError)
     )

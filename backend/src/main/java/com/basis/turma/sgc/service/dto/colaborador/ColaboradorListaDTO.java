@@ -19,6 +19,8 @@ public class ColaboradorListaDTO implements Serializable {
 
     private String sobrenome;
 
+    private String cpf;
+
     private String email;
 
     private LocalDate dataNascimento;
