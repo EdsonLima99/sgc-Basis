@@ -42,9 +42,9 @@ export class CompetenciaFormComponent implements OnInit {
       if (!!this.compEdit){
           this.formulario.patchValue(this.compEdit)
           this.formulario.get("categoriaId").setValue(this.compEdit.categoria.id)
-          console.log(this.formulario.getRawValue())
+        //   console.log(this.formulario.getRawValue())
       }
-      console.log("isso: " + this.compEdit)
+    //   console.log("isso: " + this.compEdit)
     };
 
     converterDropdown(categorias: any[], valor:string, nome:string): SelectItem[]{
@@ -72,10 +72,4 @@ export class CompetenciaFormComponent implements OnInit {
             console.log("Erro.", error)
         })
       }
-
-//       enviarReq(observable: Observable<CompetenciaModel>) {
-//         observable.subscribe((result) => {
-//             this.atualizarLista.emit("Atualizar")
-//         });
-// }
  }

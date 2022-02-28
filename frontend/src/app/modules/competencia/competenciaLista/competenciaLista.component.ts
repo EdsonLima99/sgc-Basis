@@ -55,7 +55,8 @@ export class CompetenciaListaComponent implements OnInit {
     public editarCompetencia(competencia: CompetenciaModel){
       this.compEdit = competencia;
       console.log(this.compEdit)
-      this.showDialog();
+      this.displayModal = true;
+    //   this.showDialog();
     }
 
     public fecharModal(){
