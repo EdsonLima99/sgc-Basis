@@ -29,13 +29,16 @@ export class CompetenciaListaComponent implements OnInit {
   ngOnInit() {
     this.listarCompetencia()
 
-
     this.scrollableCols = [
         { field: 'nome', header: 'Nome' },
         { field: 'descricao', header: 'Descrição' },
         { field: this.CAMPO_CATEGORIA, header: this.COLUNA_CATEGORIA },
     ];
   }
+
+  atualizarLista(evento) {
+    this.listarCompetencia();
+}
 
   listarCompetencia(){
     this.listaCompetenciaService.listarCompetencias().subscribe((data)=>{
@@ -67,10 +70,17 @@ export class CompetenciaListaComponent implements OnInit {
 
     public editarCompetencia(competencia: CompetenciaModel){
       this.compEdit = competencia;
-      this.showDialog();
       console.log(this.compEdit)
+      this.showDialog();
+
 
         // this.listaCompetenciaService.editarCompetencia(id).subscribe()
+    }
+
+    public fecharModal(){
+        this.displayModal = false
+        this.compEdit = null
+        this.listarCompetencia()
     }
 
 }

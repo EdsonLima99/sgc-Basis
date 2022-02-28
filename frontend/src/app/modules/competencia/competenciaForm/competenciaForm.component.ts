@@ -2,7 +2,7 @@ import { CompetenciaService } from './../service/competencia.service';
 import { Observable } from 'rxjs';
 import { CategoriaService } from './../service/categoria.service';
 import { SelecionaModel } from './../../seleciona/models/seleciona.models';
-import { Component, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import { SelectItem } from 'primeng';
 import { CompetenciaModel } from '../models/competencia.models';
@@ -22,6 +22,7 @@ export class CompetenciaFormComponent implements OnInit {
      categorias: SelecionaModel[] = [];
      competencia: CompetenciaModel[];
      @Input() compEdit: CompetenciaModel;
+     @Output() public aoFechar: EventEmitter<void> = new EventEmitter()
 
 
   constructor(
@@ -40,6 +41,8 @@ export class CompetenciaFormComponent implements OnInit {
       });
       if (!!this.compEdit){
           this.formulario.patchValue(this.compEdit)
+          this.formulario.get("categoriaId").setValue(this.compEdit.categoria.id)
+          console.log(this.formulario.getRawValue())
       }
       console.log("isso: " + this.compEdit)
     };
@@ -53,9 +56,14 @@ export class CompetenciaFormComponent implements OnInit {
 
     public salvarCompetencia(){
         console.log("teste");
-        this.competenciaService.inserirCompetencia(this.formulario.getRawValue()).subscribe()
+        this.competenciaService.inserirCompetencia(this.formulario.getRawValue()).subscribe(() => {
+            this.fecharModal()
+        })
         // this.atualizarLista.emit("atualizar")
+    }
 
+    public fecharModal(){
+        this.aoFechar.emit()
     }
 
     public listarCategoria(){
