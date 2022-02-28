@@ -71,6 +71,17 @@ public class TurmaFormacaoService {
         turmaFormacaoCompetenciaColaboradorRepository.saveAll(lista);
     }
 
+    public void excluir(Integer id) {
+        Optional<TurmaFormacao> turmaFormacaoOptional = buscarPorId(id);
+        if(!turmaFormacaoOptional.isPresent()) {
+            throw new Exception("Turma não encontrada!");
+        }
+
+        List<TurmaFormacaoCompetenciaColaborador> lista = turmaFormacaoCompetenciaColaboradorRepository.findByTurmaFormacaoId(id);
+        turmaFormacaoCompetenciaColaboradorRepository.deleteAll(lista);
+        turmaFormacaoRepository.deleteById(id);
+    }
+
     public Optional<TurmaFormacao> buscarPorId(Integer id) {
         return turmaFormacaoRepository.findById(id);
     }

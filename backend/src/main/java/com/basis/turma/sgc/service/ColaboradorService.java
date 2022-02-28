@@ -76,6 +76,17 @@ public class ColaboradorService {
         colaboradorCompetenciaRepository.saveAll(lista);
     }
 
+    public void excluir(Integer id) {
+        Optional<Colaborador> colaboradorOptional = buscarPorId(id);
+        if(!colaboradorOptional.isPresent()) {
+            throw new Exception("Colaborador não encontrado!");
+        }
+
+        List<ColaboradorCompetencia> lista = colaboradorCompetenciaRepository.findByColaboradorId(id);
+        colaboradorCompetenciaRepository.deleteAll(lista);
+        colaboradorRepository.deleteById(id);
+    }
+
     public Optional<Colaborador> buscarPorId(Integer id) {
         return colaboradorRepository.findById(id);
     }

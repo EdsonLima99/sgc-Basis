@@ -1,6 +1,8 @@
 package com.basis.turma.sgc.resource;
 
 import com.basis.turma.sgc.domain.Colaborador;
+import com.basis.turma.sgc.domain.ColaboradorCompetencia;
+import com.basis.turma.sgc.repository.ColaboradorCompetenciaRepository;
 import com.basis.turma.sgc.repository.ColaboradorRepository;
 import com.basis.turma.sgc.service.ColaboradorService;
 import com.basis.turma.sgc.service.dto.SelecionaDTO;
@@ -24,6 +26,7 @@ public class ColaboradorResource {
 
     private final ColaboradorService colaboradorService;
     private final ColaboradorRepository colaboradorRepository;
+    private final ColaboradorCompetenciaRepository colaboradorCompetenciaRepository;
 
     @GetMapping("/{id}")
     public ResponseEntity<ColaboradorListaDTO> buscar(@PathVariable Integer id) {
@@ -54,16 +57,21 @@ public class ColaboradorResource {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> excluir(@PathVariable Integer id) {
-        Optional<Colaborador> colaboradorOptional = colaboradorService.buscarPorId(id);
-        if(!colaboradorOptional.isPresent()) {
-            throw new Exception("Colaborador não encontrado!");
-        }
+        colaboradorService.excluir(id);
 
-        try {
-            colaboradorRepository.deleteById(id);
-        } catch (DataIntegrityViolationException e) {
-            throw new Exception("Não foi possível excluir o colaborador!");
-        }
+//        Optional<Colaborador> colaboradorOptional = colaboradorService.buscarPorId(id);
+//        if(!colaboradorOptional.isPresent()) {
+//            throw new Exception("Colaborador não encontrado!");
+//        }
+//
+//        List<ColaboradorCompetencia> lista = colaboradorCompetenciaRepository.findByColaboradorId(id);
+//        colaboradorCompetenciaRepository.deleteAll(lista);
+//
+//        try {
+//            colaboradorRepository.deleteById(id);
+//        } catch (DataIntegrityViolationException e) {
+//            throw new Exception("Não foi possível excluir o colaborador!");
+//        }
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 

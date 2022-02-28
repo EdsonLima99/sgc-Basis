@@ -128,6 +128,7 @@ export class TurmaFormacaoFormComponent implements OnInit {
   }
   */
 
+
   public listarStatus() {
     this.statusService.getStatus().subscribe(
         (status: any) => {
@@ -167,8 +168,6 @@ export class TurmaFormacaoFormComponent implements OnInit {
     );
 
   }
-
-
 
   incluirCompetenciaTurma() {
     this.formulario.get('turmaFormacaoCompetenciasColaboradores').value.push(new TurmaFormacaoCompetenciaColaboradorModel(

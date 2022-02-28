@@ -17,4 +17,6 @@ public interface ColaboradorCompetenciaRepository extends JpaRepository<Colabora
     ColaboradorCompetencia  findByColaboradorIdAndCompetenciaId(Integer colaboradorId, Integer competenciaId);
 
     List<ColaboradorCompetencia> findByCompetenciaIdAndSenioridade(Integer competenciaId, Integer senioridade);
+
+    List<ColaboradorCompetencia> findByColaboradorId(Integer colaboradorId);
 }

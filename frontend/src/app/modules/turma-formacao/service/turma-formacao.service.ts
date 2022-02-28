@@ -34,7 +34,7 @@ export class TurmaFormacaoService {
   }
 
   public excluir(id: number): Observable<TurmaFormacaoModel> {
-    const url = `${this.UrlService}/colaboradores/${id}`;
+    const url = `${this.UrlService}/turmas_formacao/${id}`;
 
     return this.http.delete<TurmaFormacaoModel>(url).pipe(
       map(() => null),

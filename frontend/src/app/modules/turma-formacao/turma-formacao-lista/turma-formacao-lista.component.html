@@ -37,7 +37,14 @@
             <td style="text-align: center">
                 <button type="button" [routerLink]="['alterar', '1']" pButton icon="ui ui-icon-pencil" label="Editar"
                     class="ui-button-info"></button>
-                <button type="button" (click)="excluir(rowData.id)"  pButton icon="ui ui-icon-trash" label="Excluir" class="ui-button-danger"></button>
+                    <button
+                    (click)="excluir(rowData.id)"
+                    type="button"
+                    pButton
+                    icon="ui ui-icon-trash"
+                    label="Excluir"
+                    class="ui-button-danger"
+                ></button>
             </td>
         </tr>
     </ng-template>

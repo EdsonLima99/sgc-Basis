@@ -48,8 +48,15 @@ export class TurmaFormacaoListaComponent implements OnInit {
     }
 
     public excluir(id: number){
+        /*
+        this.turmaFormacaoService.excluir(id).subscribe(() =>
+        { alert('Turma de Formação Excluída!') },
+        () => {alert('Não foi possível excluir a turma!'); })
+        this.buscarTodas();
+        */
         this.turmaFormacaoService.excluir(id).subscribe()
-        alert("Turma de Formação excluída")
+        alert('Turma de Formação Excluída!');
+        this.buscarTodas();
     }
 
     showDialog() {
