@@ -75,6 +75,17 @@ export class CompetenciaFormComponent implements OnInit {
         this.editarCompetencia();
     }
 
+    verificaValidacao(campo){
+        return this.formulario.get(campo).valid && this.formulario.get(campo).touched;
+    }
+
+    erroCss(campo){
+        return{
+            'has-error': this.verificaValidacao(campo),
+            'has-feedback': this.verificaValidacao(campo)
+        }
+    }
+
     public fecharModal(){
         this.aoFechar.emit()
     }
@@ -86,4 +97,8 @@ export class CompetenciaFormComponent implements OnInit {
             console.log("Erro.", error)
         })
       }
+
+    //   get title() {
+    //     return this.titleModal? "Criar competência" : "Editar competência";
+    // }
  }

@@ -1,6 +1,6 @@
 import { CompetenciaService } from './../service/competencia.service';
 import { CompetenciaModel } from './../models/competencia.models';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-competenciaLista',

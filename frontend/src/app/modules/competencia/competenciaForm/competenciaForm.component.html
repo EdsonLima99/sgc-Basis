@@ -1,26 +1,30 @@
 <div class="p-mb-4">
     <h1 class="h2 border-left pl-2" style="text-align: center">Criar/Editar Competência</h1>
+    <!-- <p-header class="custom-dialog-header">{{ title }}</p-header> -->
 </div>
-<form [formGroup]="formulario">
+<form [formGroup]="formulario" [ngClass]="erroCss('nome')">
 
     <div class="form-group">
         <div class="field col-12 md-10">
-            <label for="nome">Nome:</label>
-            <input type="text" class="inputfield w-full" id="nome" formControlName="nome">
+            <label for="nome">Nome:</label><br>
+            <input type="text" class="inputfield w-full" id="nome" formControlName="nome"><br>
+            <small *ngIf="formulario.get('nome').invalid && formulario.get('nome').touched" class="text-danger">Nome é obrigatório!</small>
         </div><br>
         <div class="field col-12 md-10">
-            <label for="descricao">Descrição:</label>
-            <input type="textarea" class="inputfield w-full" id="descricao" formControlName="descricao">
+            <label for="descricao">Descrição:</label><br>
+            <input type="textarea" class="inputfield w-full" id="descricao" formControlName="descricao"><br>
+            <small *ngIf="formulario.get('descricao').invalid && formulario.get('descricao').touched" class="text-danger">Descrição é obrigatória!</small>
         </div><br>
         <div>
-            <label for="categorias">Categoria:</label>
+            <label for="categorias">Categoria:</label><br>
             <p-dropdown formControlName="categoriaId" appendTo = "body"
             [options]="converterDropdown(categorias, 'id', 'descricao')"
             placeholder="Selecione uma categoria" [showClear]="true">
+            <small *ngIf="formulario.get('categoriaId').invalid && formulario.get('categoriaId').touched" class="text-danger">Categoria é obrigatória!</small>
             </p-dropdown>
         </div><br>
         <div style="text-align: center">
-            <button type="submit" pButton icon="ui ui-icon-save" (click)="verificarId()" label="Salvar"
+            <button [disabled]="formulario.invalid" type="submit" pButton icon="ui ui-icon-save" (click)="verificarId()" label="Salvar"
                 class="ui-button-success"></button>
             <button type="button" pButton icon="pi pi-times" (click)="fecharModal()" label="Cancelar"
                 class="ui-button-danger"></button>

@@ -4,7 +4,6 @@
     <button type="button" (click)="showDialog()" pButton icon="pi pi-plus" label="Novo" class="ui-button-success"></button>
 </div>
 <br />
-<!-- <p-button label="Criar" icon="pi pi-check" iconPos="left" (click)="showDialog()"></p-button> -->
 <p-dialog [(visible)]="displayModal"
     [draggable]="false"
     [resizable]="false"
@@ -14,9 +13,9 @@
 
     *ngIf = "compEdit"
     [compEdit]="compEdit"
-    (aoFechar)="fecharModal()"
+    (aoFechar)="fecharModal()">
 
-    ></app-competenciaForm>
+    </app-competenciaForm>
 </p-dialog>
 <p-table [columns]="scrollableCols" [value]="competencias" [scrollable]="true" scrollHeight="200px">
     <ng-template pTemplate="header" let-columns>
